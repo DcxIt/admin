@@ -1,0 +1,14 @@
+1.在电脑上安装好 GuitHub     并且在该网站上已经注册了
+2.怎么将本地的文件传到 GuitHub上？
+	确保你在GuitHUB网站上已经建立了一个项目，其实相当于一个文件夹
+
+	1.右键点击Guit base here 进入命令行模式
+	2.使用 mkdir 文件夹名  创建文件，在哪里右键点击GUit base here 就会在哪里创建文件夹
+	3.cd 文件夹名  进入
+	4.在命令行模式中输入 git clone http://github.com/DcxIt/admin.git （作用是将网站上的文件copy下来）（DcxIt是你GuitHub的账号）
+	5.将要上传的文件放进cd 进来的这个文件夹里 
+	6.输入命令 git add .
+	7输入 git commit -m "这里是对你上传的文件的一个说明介绍"
+	8.输入 git push -u origin master （这个命令是将你的本地文件上传到网站上）
+	9.上一个命令执行后会需要输入账号：GuitHub的账号和密码
+	10去GuitHub查看下文件就会上来了
