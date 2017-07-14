@@ -1,13 +1,21 @@
 <?php
-	//include("./db_connect/db_method.mod.php");
-	//$arrParms = $_POST[""];
-	
+	//登陆检测
 	function cp_admin_login_check(){
 		$arrParms = json_decode(file_get_contents("php://input"),true);
-		$result = cp_db_sql_select($arrParms,"t_cp_admin_info");
-		file_put_contents("c:/321.txt",var_export($arrParms,1));
-		file_put_contents("c:/1.txt",var_export($result,1));
-		echo "yes";
+		$arrResult = cp_db_sql_select($arrParms,"t_cp_admin_info");
+		if(count($arrResult) == 0){
+			$arrResultBack = array(
+				"code" => "10000",
+				"msg" => "登陆失败"
+			);			
+		}else{
+			$arrResultBack = array(
+				"code" => "0000",
+				"msg" => "登陆成功"
+			);
+		}
+		$jsonResultBack = json_encode($arrResultBack);
+		echo $jsonResultBack;
 	}
 
 ?>

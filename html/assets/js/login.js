@@ -17,8 +17,17 @@ function cp_login_check(){
 	    url:ajaxUrl,
 	    data:strPost,
 	    dataType:"text",
-	    success:function(data){
-	    	alert(data);
+	    success:function(jsonData){
+	    	$objData = JSON.parse(jsonData);
+	    	if($objData['code'] == "1000"){
+	    		alert($objData['msg']);
+	    		return;
+	    	}else{
+	    		alert($objData['msg']);
+	    		//window.location("./admin.html"); 
+	    		location.href = "?action=admin_main";
+	    	}
+
 	    }
 	});	
 }
