@@ -1,5 +1,5 @@
 <?php
-
+include_once("./mod/db_connect/db_connect.mod.php");
 function cp_app_inital(){
 	if(!isset($_GET["action"])){
 		$output=file_get_contents('./website/index.html'); 

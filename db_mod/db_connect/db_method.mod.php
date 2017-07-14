@@ -10,9 +10,9 @@
 		$strAdminName = htmlspecialchars($arrParms['admin_name']);
 		$strPassWord = htmlspecialchars($arrParms['admin_password']);
 		$strSql = "select * from t_copmpany_admin_info where admin_name='{$strAdminName}' and admin_password='{$strPassWord}'";
-		$arrResult = mysql_query($strSql);
-		if($arrRow = mysql_fetch_assoc($arrResult)){
-			return true;
+		$result = $strLink -> query($strSql);
+		if($row = $strLink -> fetch_row($result)){
+			return 111111111111111;
 		}else{
 			return false;
 		}
