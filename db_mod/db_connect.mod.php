@@ -8,7 +8,7 @@
 		return $strLink;		
 	}
 
-	function cp_db_for_list($strSql){
+	function cp_db_query_for_list($strSql){
 		$connect = cp_db_connect_get();
 		$result = $connect -> query($strSql);
 		$result = $result -> fetch_all();

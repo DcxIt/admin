@@ -10,10 +10,10 @@
 			foreach ($arrParms as $key => $value) {
 				$value = htmlspecialchars($value);
 				$key = htmlspecialchars($key);
-				$strSql .= " and ".$key."=".$value;
+				$strSql .= " and ".$key."='{$value}'";
 			}
 		}
-		
+		file_put_contents("c:/2.txt",var_export($strSql,1));
 		$result = cp_db_query_for_list($strSql);
 		return $result;
 	}

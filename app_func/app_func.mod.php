@@ -1,6 +1,6 @@
 <?php
 include_once("./db_mod/db_connect.mod.php");
-include_once("./db_mod/db_connect.mod.php");
+include_once("./db_mod/db_method.mod.php");
 function cp_app_inital(){
 	if(!isset($_GET["action"])){
 		$output=file_get_contents('./website/index.html'); 
@@ -23,10 +23,10 @@ function cp_app_inital(){
 	}
 	if($action == "admin_login"){
 		
-		if(file_exists("./mod/event_make/admin_login.mod.php")){
+		if(file_exists("./event_mod/admin_login.mod.php")){
 			file_put_contents("c:/123456.txt","asdasdasdasd");
 		}
-		include_once("./mod/event_make/admin_login.mod.php"); 
+		include_once("./event_mod/admin_login.mod.php"); 
 		$funcName = "cp_admin_login_check";
 		call_user_func($funcName);	
 		return;	
