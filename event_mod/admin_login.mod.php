@@ -9,6 +9,7 @@
 				"msg" => "登陆失败"
 			);			
 		}else{
+			$_SESSION['admin_name'] = $arrParms["admin_name"];
 			$arrResultBack = array(
 				"code" => "0000",
 				"msg" => "登陆成功"
