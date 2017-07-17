@@ -8,16 +8,30 @@
 		return $strLink;		
 	}
 
-	function cp_db_query_for_list($strSql){
+	function cp_db_query_for_all($strSql){
 		$connect = cp_db_connect_get();
 		$result = $connect -> query($strSql);
 		$result = $result -> fetch_all();
 		return $result;
 	}
-	//mysql_select_db("test",$strLink);
-/*	$arr = json_decode(file_get_contents("php://input"),true);
-	if(count($arr) > 0){
-		$sqlUpdate = "update chat set is_new='1' , recev='{$arr['recev']}' , content='{$arr['content']}' where id='1'";
-		mysql_query($sqlUpdate,$strLink);
-	}*/
+
+	function cp_db_query_for_list($strSql){
+		$connect = cp_db_connect_get();
+		$result = $connect -> query($strSql);
+		$arrData=array();
+		$arrResult = array();
+		while($row=mysqli_fetch_array($result)){
+		    $arrData[]=$row;
+		}
+		if(count($arrData) > 0 && is_array($arrData)){
+			foreach ($arrData as $key => $value) {
+				foreach ($value as $secKey => $secValue) {
+					if(!is_numeric($secKey)){
+						$arrResult[$key][$secKey] = $secValue;
+					}
+				}
+			}
+		}
+		return $arrResult;
+	}
 ?>
