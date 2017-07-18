@@ -2,3 +2,36 @@
     position: absolute;
     left: 35%;	 	
 }
+
+#agent_info_table_container{
+	width: 88%;
+    position: absolute;
+    left: 162px;
+}
+.delete{
+	margin-left:5px; 
+}
+
+.agent_info_search{
+	width: 88%;
+    position: absolute;
+    left: 162px;	
+}
+.agent_info_input1{
+	width:15%;
+	display: -webkit-inline-box;
+}
+.agent_info_input2{
+	width:70%;
+	display: -webkit-inline-box;
+}
+h4{
+	text-align: center;
+}
+.agent_info_ul_add{
+	text-align: center;
+}
+
+.agent_info_button_add{
+	text-align: center;
+}

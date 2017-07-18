@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 <title>客户管理中心</title>
-<link href="{path}bootstrap-3.3.5-dist/css/bootstrap.min.css" title="" rel="stylesheet" />
+<link href="{path}bootstrap-3.3.5-dist/css/bootstrap.css" title="" rel="stylesheet" />
 <link title="" href="{path}css/style.css" rel="stylesheet" type="text/css"  />
 <link title="blue" href="{path}css/dermadefault.css" rel="stylesheet" type="text/css"/>
 <link title="green" href="{path}css/dermagreen.css" rel="stylesheet" type="text/css" disabled="disabled"/>
@@ -18,103 +18,129 @@
 </head>
 
 <body>
-<nav class="nav navbar-default navbar-mystyle navbar-fixed-top">
-  <div class="navbar-header">
-    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
-     <span class="icon-bar"></span> 
-     <span class="icon-bar"></span> 
-     <span class="icon-bar"></span> 
-    </button>
-    <a class="navbar-brand mystyle-brand"><span class="glyphicon glyphicon-home"></span></a> </div>
-  <div class="collapse navbar-collapse">
-    
-    <ul class="nav navbar-nav pull-right">
-      <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">00000000@qq.com<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">退出</a></li>
-        </ul>
-      </li>
-      <li class="dropdown"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">换肤<span class="caret"></span></a>
-        <ul class="dropdown-menu changecolor">
-          <li id="blue"><a href="#">蓝色</a></li>
-          <li class="divider"></li>
-          <li id="green"><a href="#">绿色</a></li>
-          <li class="divider"></li>
-          <li id="orange"><a href="#">橙色</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="panel panel-default agent_info_search">
+	<div class="panel-body">
+			<input type="text" class="form-control agent_info_input1" placeholder="模糊搜索">
+			<button type='button' class='btn btn-warning'>搜索</button>
+			<button type='button' class='btn btn-warning' data-toggle="modal" data-target="#myModal">创建客户</button>	
+	</div>
+</div>
 <div class="down-main">
   <div class="left-main left-full">
-    <div class="sidebar-fold"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
-    <div class="subNavBox">
-      <div class="sBox">
-       <div class="subNav sublist-down"><span class="title-icon glyphicon glyphicon-chevron-down"></span><span class="sublist-title">客户中心</span>
-        </div>
-        <ul class="navContent" style="display:block">
-          <li class="active">
-            <div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />客户管理</div>
-            <a href="?action=agent_info"><span class="sublist-icon glyphicon glyphicon-user"></span><span class="sub-title">客户管理</span></a> </li>
-          <li>
-            <div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />订单管理</div>
-            <a href="?action=message"><span class="sublist-icon glyphicon glyphicon-envelope"></span><span class="sub-title">订单管理</span></a> </li>
-          <li>
-            <div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />短信</div>
-            <a href="?action=smsInfo"><span class="sublist-icon glyphicon glyphicon-bullhorn"></span><span class="sub-title">短信</span></a></li>
-          <li>
-            <div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />实名认证</div>
-            <a href="?action=identify"><span class="sublist-icon glyphicon glyphicon-credit-card"></span><span class="subtitle-">实名认证</span></a></li>
-        </ul>
-      </div>
-  
+	<div class="sidebar-fold"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
+	<div class="subNavBox">
+	  <div class="sBox">
+	   <div class="subNav sublist-down"><span class="title-icon glyphicon glyphicon-chevron-down"></span><span class="sublist-title">客户中心</span>
+		</div>
+		<ul class="navContent" style="display:block">
+		  <li class="active">
+			<div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />客户管理</div>
+			<a href="?action=agent_info"><span class="sublist-icon glyphicon glyphicon-user"></span><span class="sub-title">客户管理</span></a> </li>
+		  <li>
+			<div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />订单管理</div>
+			<a href="?action=message"><span class="sublist-icon glyphicon glyphicon-envelope"></span><span class="sub-title">订单管理</span></a> </li>
+		  <li>
+			<div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />短信</div>
+			<a href="?action=smsInfo"><span class="sublist-icon glyphicon glyphicon-bullhorn"></span><span class="sub-title">短信</span></a></li>
+		  <li>
+			<div class="showtitle" style="width:100px;"><img src="{path}img/leftimg.png" />实名认证</div>
+			<a href="?action=identify"><span class="sublist-icon glyphicon glyphicon-credit-card"></span><span class="subtitle-">实名认证</span></a></li>
+		</ul>
+	  </div>
   </div>
-  <div id="agent_info_list" class="right-product view-product right-full" style="width:754%">
-		<table class="table">
-			<caption>基本的表格布局</caption>
+</div>
+<div class="panel panel-default" id='agent_info_table_container'>
+	<div class="panel-body">
+		<table class="table table-hover table-condensed">
 		   <thead>
-		      <tr>
-		         <th>客户姓名</th>
-		         <th>客户性别</th>
-		         <th>客户年龄</th>
-		         <th>客户电话</th>
-		         <th>客户邮箱</th>
-		         <th>客户地址</th>
-		         <th>客户国籍</th>
-		         <th>操作<th>
-		      </tr>
+			  <tr>
+				 <th>客户姓名</th>
+				 <th>客户性别</th>
+				 <th>客户年龄</th>
+				 <th>客户电话</th>
+				 <th>客户邮箱</th>
+				 <th>客户地址</th>
+				 <th>客户国籍</th>
+				 <th>操作<th>
+			  </tr>
 		   </thead>
 		   <tbody id="agent_info_table">
 		   </tbody>
 		</table>
 
-		<div>总数:<span id="agent_info_sum_numbers"></span></div>
-		<div>当前页:<span id="agent_info_page_now"></span></div>
+		<div>总数:<span id="agent_info_sum_numbers"></span>当前页:<span id="agent_info_page_now"></span></div>
 		<ul class="pagination" id="agent_info_page_ul">
-<!-- 		    <li><a href="#">&laquo;</a></li>
-		    <li class="active"><a href="#">第一页</a></li>
-		    <li class="disabled"><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#">&raquo;</a></li> -->
-		</ul>
-  </div>
+	<!--  		    <li><a href="#">&laquo;</a></li>
+			<li class="active"><a href="#">第一页</a></li>
+			<li class="disabled"><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>  -->
+		</ul>  
+	</div>
+</div>
+<!-- 创建客户的模态框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>创建客户</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="agent_info_ul_add">
+					<li>姓名：<input type="text" class="form-control agent_info_input2" placeholder="输入客户姓名"></li>
+					<li>电话：<input type="text" class="form-control agent_info_input2" placeholder="输入电话号码"></li>
+					<li>邮箱：<input type="text" class="form-control agent_info_input2" placeholder="输入邮箱"></li>
+					<li>国籍：<input type="text" class="form-control agent_info_input2" placeholder="输入国际"></li>
+					<li>年龄：<input type="text" class="form-control agent_info_input2" placeholder="输入年龄"></li>
+					<li>地址：<input type="text" class="form-control agent_info_input2" placeholder="输入客户地址"></li>
+					<li>性别：<input type="text" class="form-control agent_info_input2" placeholder="输入性别"></li>
+				</ul>
+			</div>
+			<div class="modal-footer agent_info_button_add">
+				<button type='button' class='btn btn-warning'>创建</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="myModalChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>客户修改</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="agent_info_ul_add">
+					<li>姓名：<input type="text" class="form-control agent_info_input2" id="text_agent_info_name"></li>
+					<li>电话：<input type="text" class="form-control agent_info_input2" id="text_agent_info_phone"></li>
+					<li>邮箱：<input type="text" class="form-control agent_info_input2" id="text_agent_info_email"></li>
+					<li>国籍：<input type="text" class="form-control agent_info_input2" id="text_agent_info_country"></li>
+					<li>年龄：<input type="text" class="form-control agent_info_input2" id="text_agent_info_age"></li>
+					<li>地址：<input type="text" class="form-control agent_info_input2" id="text_agent_info_address"></li>
+					<li>性别：<input type="text" class="form-control agent_info_input2" id="text_agent_info_sex"></li>
+				</ul>
+			</div>
+			<div class="modal-footer agent_info_button_add">
+				<button type='button' class='btn btn-warning'>创建</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
 </div>
 <script type="text/javascript">
 $(function(){
 /*换肤*/
 $(".dropdown .changecolor li").click(function(){
 	var style = $(this).attr("id");
-    $("link[title!='']").attr("disabled","disabled"); 
+	$("link[title!='']").attr("disabled","disabled"); 
 	$("link[title='"+style+"']").removeAttr("disabled"); 
 
 	$.cookie('mystyle', style, { expires: 7 }); // 存储一个带7天期限的 cookie 
 })
 var cookie_style = $.cookie("mystyle"); 
 if(cookie_style!=null){ 
-    $("link[title!='']").attr("disabled","disabled"); 
+	$("link[title!='']").attr("disabled","disabled"); 
 	$("link[title='"+cookie_style+"']").removeAttr("disabled"); 
 } 
 /*左侧导航栏显示隐藏功能*/
@@ -123,8 +149,8 @@ $(".subNav").click(function(){
 			if($(this).find("span:first-child").attr('class')=="title-icon glyphicon glyphicon-chevron-down")
 			{
 				$(this).find("span:first-child").removeClass("glyphicon-chevron-down");
-			    $(this).find("span:first-child").addClass("glyphicon-chevron-up");
-			    $(this).removeClass("sublist-down");
+				$(this).find("span:first-child").addClass("glyphicon-chevron-up");
+				$(this).removeClass("sublist-down");
 				$(this).addClass("sublist-up");
 			}
 			/*隐藏*/
@@ -136,7 +162,7 @@ $(".subNav").click(function(){
 				$(this).addClass("sublist-down");
 			}	
 		// 修改数字控制速度， slideUp(500)控制卷起速度
-	    $(this).next(".navContent").slideToggle(300).siblings(".navContent").slideUp(300);
+		$(this).next(".navContent").slideToggle(300).siblings(".navContent").slideUp(300);
 	})
 /*左侧导航栏缩进功能*/
 $(".left-main .sidebar-fold").click(function(){

@@ -39,7 +39,7 @@ body{font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragin
 .sidebar-fold{ height: 30px;width: 100%;background: #394555;color: #aeb9c2;text-align: center; height:30px; font-size: 12px;cursor: pointer;}
 .sidebar-fold span{ line-height:30px;}
 /*.left-main{ bottom: 0px; top:0px; position:absolute; background-color:#293038;}*/
-.left-main{ bottom: 0px; top:50px; z-index:100; position:fixed; background-color:#293038;}
+.left-main{ bottom: 0px; top:0px; z-index:100; position:fixed; background-color:#293038;}
 .sBox ul li{ list-style-type:none; position:relative;}
 
 .sBox ul{ padding:0px; position: relative; margin:0px;}

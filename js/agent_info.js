@@ -62,6 +62,8 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	   			}else{
 	   				strSex = '女'
 	   			}
+	   			console.log(objList[strKey]);
+	   			var strData = JSON.stringify(objList[strKey]);
 	    		html += "<td>"+objList[strKey]['agent_name']+"</td>";
 	    		html += "<td>"+strSex+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_age']+"</td>";
@@ -69,10 +71,21 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	    		html += "<td>"+objList[strKey]['agent_email']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_address']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_country']+"</td>";
-	    		html += "<td>-------</td>";
+	    		html += '<td><button onclick="cp_agent_info_change()" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalChange">修改</button><button type="button" class="btn btn-danger delete">删除</button></td>';
 	    		html += "</tr>";
 	    		$("#agent_info_table").append(html);
 	    	}
 	    }
 	});	
+}
+
+function cp_agent_info_change(obj){
+	console.log(obj);
+	$("#text_agent_info_name").val(obj['agent_name']);
+	$("#text_agent_info_age").val(obj['agent_age']);
+	$("#text_agent_info_phone").val(obj['agent_phone']);
+	$("#text_agent_info_email").val(obj['agent_email']);
+	$("#text_agent_info_address").val(obj['agent_address']);
+	$("#text_agent_info_country").val(obj['agent_country']);
+	$("#text_agent_info_sex").val(obj['agent_sex']);
 }
