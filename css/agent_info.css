@@ -2,7 +2,10 @@
     position: absolute;
     left: 35%;	 	
 }
-
+#agent_order_page_ul{
+    position: absolute;
+    left: 35%;	 	
+}
 #agent_info_table_container{
 	width: 88%;
     position: absolute;

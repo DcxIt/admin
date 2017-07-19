@@ -45,7 +45,7 @@ function cp_app_inital(){
 	//mod 表示业务逻辑的判断
 	if(isset($_GET['mod'])){
 		$mod = $_GET['mod'];
-		$arrMod = array("admin_login","agent_info");
+		$arrMod = array("admin_login","agent_info","agent_order");
 		$flag = false;
 		foreach ($arrMod as $key => $value) {
 			if($value == $mod ){
