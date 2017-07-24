@@ -22,7 +22,7 @@ function cp_login_check(){
 	    		return;
 	    	}else{
 	    		alert($objData['msg']);
-	    		window.location.href = "?action=admin";
+	    		window.location.href = "?action=admin_main";
 	    	}
 	    }
 	});	

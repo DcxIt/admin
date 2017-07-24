@@ -34,4 +34,9 @@
 		}
 		return $arrResult;
 	}
+	function cp_db_insert_update_sql($strSql){
+		$connect = cp_db_connect_get();
+		$result = $connect -> query($strSql);
+		et_file_write("c:/1.txt",var_result($result,1));
+	} 
 ?>

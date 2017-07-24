@@ -17,9 +17,9 @@
 		}
 		echo json_encode($arrBackResult);
 	}
+
 	function cp_agent_info_count_all(){
 		$arrResult = cp_db_sql_page("","","t_cp_agent_info",true);
-		file_put_contents("c:/5.txt",var_export($arrResult,1));
 		if(count($arrResult) > 0 && is_array($arrResult)){
 			$arrBackResult = array(
 				"code" => "0000",
@@ -33,5 +33,10 @@
 		}
 		echo json_encode($arrBackResult);
 	}
-
+	function cp_agent_info_change(){
+		$arrRaw = json_decode(file_get_contents("php://input"),true);
+		$arrValue = $arrRaw['value'];
+		$arrWhere = $arrRaw['where'];
+		cp_db_sql_update($arrValue,$arrWhere,"t_cp_agent_info");
+	}
 ?>

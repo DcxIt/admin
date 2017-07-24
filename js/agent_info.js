@@ -62,7 +62,6 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	   			}else{
 	   				strSex = '女'
 	   			}
-	   			console.log(objList[strKey]);
 	   			var strData = JSON.stringify(objList[strKey]);
 	    		html += "<td>"+objList[strKey]['agent_name']+"</td>";
 	    		html += "<td>"+strSex+"</td>";
@@ -71,7 +70,7 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	    		html += "<td>"+objList[strKey]['agent_email']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_address']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_country']+"</td>";
-	    		html += '<td><button onclick="cp_agent_info_change()" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalChange">修改</button><button type="button" class="btn btn-danger delete">删除</button></td>';
+	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button type='button' class='btn btn-danger delete'>删除</button></td>";
 	    		html += "</tr>";
 	    		$("#agent_info_table").append(html);
 	    	}
@@ -79,13 +78,49 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	});	
 }
 
-function cp_agent_info_change(obj){
-	console.log(obj);
-	$("#text_agent_info_name").val(obj['agent_name']);
-	$("#text_agent_info_age").val(obj['agent_age']);
-	$("#text_agent_info_phone").val(obj['agent_phone']);
-	$("#text_agent_info_email").val(obj['agent_email']);
-	$("#text_agent_info_address").val(obj['agent_address']);
-	$("#text_agent_info_country").val(obj['agent_country']);
-	$("#text_agent_info_sex").val(obj['agent_sex']);
+function cp_agent_info_change(agent_name,agent_sex,agent_age,agent_phone,agent_email,agent_address,agent_country,id){
+	$("#text_agent_info_name").val(agent_name);
+	$("#text_agent_info_age").val(agent_age);
+	$("#text_agent_info_phone").val(agent_phone);
+	$("#text_agent_info_email").val(agent_email);
+	$("#text_agent_info_address").val(agent_address);
+	$("#text_agent_info_country").val(agent_country);
+	$("#text_agent_info_sex").val(agent_sex);
+	$("#text_agent_info_id").val(id);
+}
+
+function cp_agent_info_change_submit(){
+	var strAgentName = $("#text_agent_info_name").val();
+	var strAgentAge = $("#text_agent_info_age").val();
+	var strAgentPhone = $("#text_agent_info_phone").val();
+	var strAgentEmail = $("#text_agent_info_email").val();
+	var strAgentAddress = $("#text_agent_info_address").val();
+	var strAgentCountry = $("#text_agent_info_country").val();
+	var strAgentSex = $("#text_agent_info_sex").val();
+	var id = $("#text_agent_info_id").val();
+	var objPost = {};
+	var objWhere = {};
+	var objALL = {};
+	if(strAgentSex == "" || strAgentCountry == "" || strAgentAddress == ""){
+		alert("输入内容不能为空");
+		return;
+	}
+	if(strAgentEmail == "" || strAgentName == "" || strAgentPhone == "" || strAgentPhone == ""){
+		alert("输入内容不能为空");
+		return;
+	}
+	objPost = {agent_name:strAgentName,agnet_age:strAgentAge,agent_phone:strAgentPhone,agent_email:strAgentEmail,agent_address:strAgentAddress,agent_country:strAgentCountry,agent_sex:strAgentSex};
+	objWhere = {id:id};
+	objALL ={where:objWhere,value:objPost};
+	var strPost = JSON.stringify(objALL)1;
+	var ajaxUrl = "?mod=agent_info&mod_func=change";
+	$.ajax({
+	    type:"POST",
+	    url:ajaxUrl,
+	    data:strPost,
+	    dataType:"text",
+	    success:function(jsonData){
+
+	    }
+	})
 }
