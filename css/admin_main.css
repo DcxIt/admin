@@ -1,9 +1,9 @@
 #admin_main_left_menu{
  	height: 100%;
     margin-top: -20px;
+    padding: 0;
     /* background-color:white; */
     display: inline-block;
-    background-color: #f8f8f8;
     border-color: #e7e7e7;
 }
 #admin_main_contents{
@@ -15,4 +15,18 @@
 	background-color:pink;
 	display: inline-block;
 	margin-top: -20px;
+}
+#admin_main_left_menu_ul{
+	list-style: none;
+	font-size: 18px;
+    font-weight: 600;
+    padding: 0;
+    text-align: center;
+    margin:0;
+}
+#admin_main_left_menu_ul li a{
+    background-color: #467ca2;
+    border: solid 1px #316a91;
+    border-bottom: 0;
+    color:white;
 }

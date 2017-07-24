@@ -15,13 +15,12 @@ function cp_login_check(){
 	    data:strPost,
 	    dataType:"text",
 	    success:function(jsonData){
-	    	console.log(jsonData);
-	    	$objData = JSON.parse(jsonData);
-	    	if($objData['code'] == "1000"){
-	    		alert($objData['msg']);
+	    	var objData = JSON.parse(jsonData);
+	    	if(objData['code'] == "1000"){
+	    		alert(objData['msg']);
 	    		return;
 	    	}else{
-	    		alert($objData['msg']);
+	    		alert(objData['msg']);
 	    		window.location.href = "?action=admin_main";
 	    	}
 	    }

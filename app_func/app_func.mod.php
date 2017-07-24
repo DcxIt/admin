@@ -28,24 +28,14 @@ function cp_app_inital(){
 			exit("该页面不存在");
 		}
 		$output = file_get_contents($strSrc); 
-		$output = str_replace("{path}","./html/",$output);
+		$output = str_replace("{path}","./",$output);
 		echo $output;
-		return;	
-/*		$arrAction = array("login","admin","agent_info");
-		foreach ($arrAction as $key => $value){
-			if($value == $action){
-				$strSrc = "./html/".$action.".html";
-				$output = file_get_contents($strSrc); 
-				$output = str_replace("{path}","./html/",$output);
-				echo $output;
-				return;				
-			}
-		}*/		
+		return;		
 	} 
 	//mod 表示业务逻辑的判断
 	if(isset($_GET['mod'])){
 		$mod = $_GET['mod'];
-		$arrMod = array("admin_login","agent_info","agent_order");
+		$arrMod = array("admin_login","agent_info","agent_order","admin_main");
 		$flag = false;
 		foreach ($arrMod as $key => $value) {
 			if($value == $mod ){

@@ -2,10 +2,10 @@
 var gAgentInfoCount = 0;
 var gPage = 1;
 var gLimit = 10;
-$(document).ready(function(){ 
+function cp_agent_info_load(){
 	cp_agent_info_count_all();
-	cp_agent_info_fetch_list();
-}); 
+	cp_agent_info_fetch_list();	
+}
 function cp_agent_info_count_all(){
 	var ajaxUrl = "?mod=agent_info&mod_func=count_all";
 	$.ajax({
@@ -112,7 +112,7 @@ function cp_agent_info_change_submit(){
 	objPost = {agent_name:strAgentName,agnet_age:strAgentAge,agent_phone:strAgentPhone,agent_email:strAgentEmail,agent_address:strAgentAddress,agent_country:strAgentCountry,agent_sex:strAgentSex};
 	objWhere = {id:id};
 	objALL ={where:objWhere,value:objPost};
-	var strPost = JSON.stringify(objALL)1;
+	var strPost = JSON.stringify(objALL);
 	var ajaxUrl = "?mod=agent_info&mod_func=change";
 	$.ajax({
 	    type:"POST",
