@@ -14,7 +14,7 @@ function cp_app_inital(){
 		return;
 	}else if(isset($_GET['action'])){
 		$action = $_GET['action'];
-		if($action != "login" && $action != "admin_login"){
+		if($action != "login"){
 			if(!isset($_SESSION['admin_name'])){
 				$strSrc = "./html/login.html";
 				$output=file_get_contents($strSrc); 
@@ -22,6 +22,12 @@ function cp_app_inital(){
 				echo $output;
 				return;
 			}
+		}else if($action == "login"){
+				$strSrc = "./html/login.html";
+				$output=file_get_contents($strSrc); 
+				$output = str_replace("{path}","./html/",$output);
+				echo $output;
+				return;			
 		}
 		$strSrc = "./html/".$action.".html";
 		if(!file_exists($strSrc)){

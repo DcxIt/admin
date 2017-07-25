@@ -60,5 +60,6 @@
 		$strSql = substr($strSql,0,-1);
 		$strSql .=")";
 		$result = cp_db_insert_update_sql($strSql);
+		return $result;
 	}
 ?>

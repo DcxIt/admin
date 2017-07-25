@@ -70,7 +70,7 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	    		html += "<td>"+objList[strKey]['agent_email']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_address']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_country']+"</td>";
-	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button type='button' class='btn btn-danger delete'>删除</button></td>";
+	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button onclick='cp_agent_info_delete("+objList[strKey]['id']+")' type='button' class='btn btn-danger delete'>删除</button></td>";
 	    		html += "</tr>";
 	    		$("#agent_info_table").append(html);
 	    	}
@@ -120,7 +120,59 @@ function cp_agent_info_change_submit(){
 	    data:strPost,
 	    dataType:"text",
 	    success:function(jsonData){
-
+	    	var objData = JSON.parse(jsonData);
+	    	alert(jsonData['msg']);
 	    }
+	})
+}
+
+function cp_agent_info_add(){
+	var strAgentName = $("#add_agent_name").val();
+	var strAgentAge = $("#add_agent_age").val();
+	var strAgentEmail = $("#add_agent_email").val();
+	var strAgentSex = $("#add_agent_sex").val();
+	var strAgentCountry = $("#add_agent_country").val();
+	var strAgentAddress = $("#add_agent_address").val();
+	var strAgentPhone = $("#add_agent_phone").val();
+	if(strAgentName == "" || strAgentAge == "" || strAgentEmail == "" || strAgentSex == "" || strAgentCountry == "" || strAgentAddress == "" || strAgentPhone == "" ||){
+		alert("输入框不能为空");
+		return;
+	}
+	var objPost ={agent_name:strAgentName,agent_age:strAgentAge,agent_email:strAgentEmail,agent_sex:strAgentSex,agent_country:strAgentCountry,
+		agent_address:strAgentAddress,agent_phone:strAgentPhone};
+	var jsonPost = JSON.stringify(objPost);
+	var ajaxUrl = "?mod=agent_info&mod_func=add";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:jsonPost,
+		dataType:"text",
+		success:function(jsonData){
+			var objData = JSON.parse(jsonData);
+			if(objData['code'] == '0000'){
+				alert("客户创建成功");
+				cp_agent_info_fetch_list(1,10);
+				return;
+			}else{
+				alert(objData['msg']);
+			}
+		}
+	});
+}
+function cp_agent_info_delete(strId){
+	if(strId == ""){
+		alert("获取删除条件失败");
+		return;
+	}
+	var ajaxUrl = '?mod=agent_info&mod_func=delete';
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:strId,
+		dataType:"text",
+		success:function(jsonData){
+			var objData = JSON.parse(jsonData);
+			alert(jsonData['msg']);
+		}
 	})
 }
