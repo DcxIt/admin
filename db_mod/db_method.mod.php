@@ -17,7 +17,7 @@
 		return $result;
 	}
 	/*数据分页*/
-	function cp_db_sql_page($page,$limit,$strTableName,$flag = false){
+	function cp_db_sql_page($page,$limit,$strWhere="",$strTableName,$flag = false){
 		if($strTableName == ""){
 			return false;
 		}
@@ -35,16 +35,16 @@
 	function cp_db_sql_update($arrValue,$arrWhere,$strTableName){
 		$strSql = "update ".$strTableName." set ";
 		foreach ($arrValue as $key => $value) {	
-			$strSql .= $key." = ".$value.","; 
+			$strSql .= $key." = '{$value}',"; 
 		}
 		$strSql = substr($strSql,0,-1);
 		$strSql .= " where ";
 		foreach ($arrWhere as $key => $value) {
-			$strSql .= $key." = ".$value.",";
+			$strSql .= $key." = '{$value}',";
 		}
 		$strSql = substr($strSql,0,-1);
-		file_put_contents("c:/2.txt",$strSql);
 		$result = cp_db_insert_update_sql($strSql);
+		return $result;
 	}
 	//插入
 	function cp_db_sql_insert($arrValue,$strTableName){
@@ -61,5 +61,15 @@
 		$strSql .=")";
 		$result = cp_db_insert_update_sql($strSql);
 		return $result;
+	}
+	//删除
+	function cp_db_sql_delete($arrWhere,$strTableName){
+		$strSql = "delete from ".$strTableName." where ";
+		foreach ($arrWhere as $key => $value) {
+			$strSql .= $key." = '{$value}',";
+		}
+		$strSql = substr($strSql,0,-1);
+		$result = cp_db_insert_update_sql($strSql);
+		return $result;	
 	}
 ?>

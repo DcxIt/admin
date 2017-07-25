@@ -1,7 +1,7 @@
 ﻿
 <div class="panel panel-default agent_info_search">
-	<div class="panel-body">
-			<input type="text" class="form-control agent_info_input1" placeholder="模糊搜索">
+	<div class="panel-body" style="display: -webkit-inline-box;">
+			<input id='agent_info_like_search' type="text" class="form-control agent_info_input1" placeholder="模糊搜索">
 			<button type='button' class='btn btn-warning'>搜索</button>
 			<button type='button' class='btn btn-warning' data-toggle="modal" data-target="#myModal">创建客户</button>	
 	</div>
@@ -57,7 +57,7 @@
 				</ul>
 			</div>
 			<div class="modal-footer agent_info_button_add">
-				<button type='button' class='btn btn-warning'>创建</button>
+				<button onclick='cp_agent_info_add()' type='button' class='btn btn-warning'>创建</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->

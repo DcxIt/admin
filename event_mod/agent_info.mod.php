@@ -3,7 +3,12 @@
 		$arrRaw = json_decode(file_get_contents("php://input"),true);
 		$page = $arrRaw['page'];
 		$limit = $arrRaw['limit'];
-		$arrResult = cp_db_sql_page($page,$limit,"t_cp_agent_info");
+		if(isset($arrRaw['where'])){
+			$strWhere = $arrRaw['where'];
+		}else{
+			$strWhere = "";
+		}
+		$arrResult = cp_db_sql_page($page,$limit,$strWhere,"t_cp_agent_info");
 		if(count($arrResult) == 0){
 			$arrBackResult = array(
 				"code" => "error",
@@ -37,7 +42,7 @@
 		$arrRaw = json_decode(file_get_contents("php://input"),true);
 		$arrResultBack = array(
 			"code" => "error",
-			"msg" => "创建失败"
+			"msg" => "修改失败"
 		);
 		if(count($arrRaw) < 1){
 			$arrResultBack['msg'] = "接收数据为空";
@@ -46,6 +51,11 @@
 			return;
 		}		
 		$arrValue = $arrRaw['value'];
+		if($arrValue['agent_sex'] == '女'){
+			$arrValue['agent_sex'] = 0;
+		}else{
+			$arrValue['agent_sex'] = 1;
+		}
 		$arrWhere = $arrRaw['where'];
 		$result = cp_db_sql_update($arrValue,$arrWhere,"t_cp_agent_info");
 		if($result == true){
@@ -59,6 +69,11 @@
 	}
 	function cp_agent_info_add(){
 		$arrData = json_decode(file_get_contents("php://input"),true);
+		if($arrData['agent_sex'] == '女'){
+			$arrData['agent_sex'] = 0;
+		}else{
+			$arrData['agent_sex'] = 1;
+		}
 		$arrResultBack = array(
 			"code" => "error",
 			"msg" => "创建失败"
@@ -94,6 +109,12 @@
 		$arrWhere = array(
 			'id' => $strId
 		);
-		
+		$result = cp_db_sql_delete($arrWhere,"t_cp_agent_info");
+		if($result == true){
+			$arrResultBack['code'] = '0000';
+			$arrResultBack['msg'] = '删除成功';
+		}
+		$jsonResultBack = json_encode($arrResultBack);
+		echo $jsonResultBack;
 	}
 ?>

@@ -2,16 +2,18 @@
 var gAgentInfoCount = 0;
 var gPage = 1;
 var gLimit = 10;
+var gWhere = "";
 function cp_agent_info_load(){
+	$("#agent_info_page_ul").children().remove();
 	cp_agent_info_count_all();
 	cp_agent_info_fetch_list();	
 }
-function cp_agent_info_count_all(){
+function cp_agent_info_count_all(gWhere=""){
 	var ajaxUrl = "?mod=agent_info&mod_func=count_all";
 	$.ajax({
 	    type:"POST",
 	    url:ajaxUrl,
-	    data:"",
+	    data:gWhere,
 	    dataType:"text",
 	    success:function(jsonData){
 	    	var objData = JSON.parse(jsonData);
@@ -34,10 +36,13 @@ function cp_agent_info_count_all(){
 	    }
 	});		
 }
-function cp_agent_info_fetch_list(gPage=1,gLimit=10){
+function cp_agent_info_fetch_list(gPage=1,gLimit=10,gWhere=""){
 	var obj = {};
 	obj['page'] = gPage;
 	obj['limit'] = gLimit;
+	if(gWhere != ""){
+		obj['where'] = gWhere;
+	}
 	var jsonData = JSON.stringify(obj);
 	var ajaxUrl = "?mod=agent_info&mod_func=list";
 	$.ajax({
@@ -70,7 +75,7 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10){
 	    		html += "<td>"+objList[strKey]['agent_email']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_address']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_country']+"</td>";
-	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button onclick='cp_agent_info_delete("+objList[strKey]['id']+")' type='button' class='btn btn-danger delete'>删除</button></td>";
+	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button onclick='cp_agent_info_delete(\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-danger delete'>删除</button></td>";
 	    		html += "</tr>";
 	    		$("#agent_info_table").append(html);
 	    	}
@@ -109,7 +114,7 @@ function cp_agent_info_change_submit(){
 		alert("输入内容不能为空");
 		return;
 	}
-	objPost = {agent_name:strAgentName,agnet_age:strAgentAge,agent_phone:strAgentPhone,agent_email:strAgentEmail,agent_address:strAgentAddress,agent_country:strAgentCountry,agent_sex:strAgentSex};
+	objPost = {agent_name:strAgentName,agent_age:strAgentAge,agent_phone:strAgentPhone,agent_email:strAgentEmail,agent_address:strAgentAddress,agent_country:strAgentCountry,agent_sex:strAgentSex};
 	objWhere = {id:id};
 	objALL ={where:objWhere,value:objPost};
 	var strPost = JSON.stringify(objALL);
@@ -121,7 +126,14 @@ function cp_agent_info_change_submit(){
 	    dataType:"text",
 	    success:function(jsonData){
 	    	var objData = JSON.parse(jsonData);
-	    	alert(jsonData['msg']);
+	    	if(objData['code'] = '0000'){
+	    		cp_agent_info_load();
+	    		alert(objData['msg']);
+	    		$(".modal-content").css("display","none");	    		
+	    	}else{
+	    		alert(objData['msg']);
+	    	}
+
 	    }
 	})
 }
@@ -134,13 +146,14 @@ function cp_agent_info_add(){
 	var strAgentCountry = $("#add_agent_country").val();
 	var strAgentAddress = $("#add_agent_address").val();
 	var strAgentPhone = $("#add_agent_phone").val();
-	if(strAgentName == "" || strAgentAge == "" || strAgentEmail == "" || strAgentSex == "" || strAgentCountry == "" || strAgentAddress == "" || strAgentPhone == "" ||){
+	if(strAgentName == "" || strAgentAge == "" || strAgentEmail == "" || strAgentSex == "" || strAgentCountry == "" || strAgentAddress == "" || strAgentPhone == ""){
 		alert("输入框不能为空");
 		return;
 	}
 	var objPost ={agent_name:strAgentName,agent_age:strAgentAge,agent_email:strAgentEmail,agent_sex:strAgentSex,agent_country:strAgentCountry,
 		agent_address:strAgentAddress,agent_phone:strAgentPhone};
 	var jsonPost = JSON.stringify(objPost);
+	console.log(objPost);
 	var ajaxUrl = "?mod=agent_info&mod_func=add";
 	$.ajax({
 		type:"POST",
@@ -151,7 +164,8 @@ function cp_agent_info_add(){
 			var objData = JSON.parse(jsonData);
 			if(objData['code'] == '0000'){
 				alert("客户创建成功");
-				cp_agent_info_fetch_list(1,10);
+				cp_agent_info_load();
+				$(".modal-content").css("display","none");
 				return;
 			}else{
 				alert(objData['msg']);
@@ -160,6 +174,9 @@ function cp_agent_info_add(){
 	});
 }
 function cp_agent_info_delete(strId){
+	if(!confirm("确定删除该客户信息吗?")){
+		return;
+	}
 	if(strId == ""){
 		alert("获取删除条件失败");
 		return;
@@ -172,7 +189,22 @@ function cp_agent_info_delete(strId){
 		dataType:"text",
 		success:function(jsonData){
 			var objData = JSON.parse(jsonData);
-			alert(jsonData['msg']);
+			if(objData['code'] == '0000'){
+				alert(objData['msg']);
+				cp_agent_info_load();
+				return;
+			}
+			alert(objData['msg']);
 		}
 	})
+}
+
+function cp_agent_info_like_search(){
+	var strWhere = $("#agent_info_like_search").val();
+	if(strWhere == ""){
+		return;
+	}
+	gWhere = strWhere;
+	cp_agent_info_fetch_list(gPage=1,gLimit=10,gWhere)
+	cp_agent_info_count_all(gWhere);
 }
