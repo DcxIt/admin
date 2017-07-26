@@ -41,7 +41,7 @@ function cp_app_inital(){
 	//mod 表示业务逻辑的判断
 	if(isset($_GET['mod'])){
 		$mod = $_GET['mod'];
-		$arrMod = array("admin_login","agent_info","agent_order","admin_main");
+/*		$arrMod = array("admin_login","agent_info","agent_order","admin_main");
 		$flag = false;
 		foreach ($arrMod as $key => $value) {
 			if($value == $mod ){
@@ -51,7 +51,7 @@ function cp_app_inital(){
 		}
 		if($flag == false){
 			exit("找不到该mod");
-		}
+		}*/
 		if(!isset($_GET['mod_func'])){
 			exit("您没有传递mod的方法");
 		}
@@ -61,8 +61,13 @@ function cp_app_inital(){
 		}
 		include_once($strSrcMod); 
 		$funcName = "cp_".$mod."_".$_GET['mod_func'];
-		call_user_func($funcName);	
-		return;		
+		if (function_exists($funcName)) {
+ 			call_user_func($funcName);
+		}else{
+			exit("找不到该".$funcName."方法");
+		}
+	
+		
 	}
 }
 

@@ -1,10 +1,10 @@
 var gAgentOrderCount = 0;
 var gPage = 1;
 var gLimit = 10;
-$(document).ready(function(){ 
+function cp_agent_order_load(){
 	cp_agent_order_count_all();
-	cp_agent_order_fetch_list();
-}); 
+	cp_agent_order_fetch_list();	
+}
 
 function cp_agent_order_fetch_list(gPage=1,gLimit=10){
 	var obj = {};
@@ -74,4 +74,106 @@ function cp_agent_order_count_all(){
 	    	$("#agent_order_page_ul").append(lastHtml);
 	    }
 	});
+}
+//增加
+function cp_agent_order_add(){
+	var objPost = {};
+	var agentName = $("#agent_order_agent_name").val();
+	var agentEmail = $("#agent_order_agent_email").val();
+	var agentOrderBatch = $("#agent_order_agent_batch").val();
+	var agentOrderPrice = $("#agent_order_agent_price").val();
+	var agentOrderContents = $("#agent_order_contents").val();
+	var agentOrderAddress = $("#agent_order_agent_address").val(); 
+	if(agentName == ""||agentEmail==""||agentOrderBatch == ""|| agentOrderPrice == "" || agentOrderContents == "" || agentOrderAddress == ""){
+		alert("必填数据不能为空");
+		return;
+	}
+	objPost = {agent_name:agentName,agent_email:agentEmail,agent_order_price:agentOrderPrice,
+		agent_order_address:agentOrderAddress,agent_order_note:agentOrderContents,agent_order_batch:agentOrderBatch};
+	var jsonPost = JSON.stringify(objPost);
+	var ajaxUrl = "?mod=agent_order&mod_func=add";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:jsonPost,
+		dataType:"text",
+		success:function(jsonData){
+			var objData = JSON.parse(jsonData);
+			if(objData['code'] == "0000"){
+				alert(objData['msg']);
+				cp_agent_order_load();
+				return;
+			}else{
+				alert(objData['msg']);
+			}
+		}
+	});
+}
+//删除
+function cp_agent_order_delete(strId){
+	if(strId){
+		alert("获取不到ID,删除失败");
+		return;
+	}
+	var objPost = {};
+	objPost = {id:strId};
+	var jsonPost = JOSN.stringify(objPost);
+	var ajaxUrl = "?mod=agent_order&mod_func=delete";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:jsonPost,
+		dataType:'text',
+		success:function(jsonDataa){
+			var objData = JSON.parse(jsonData);
+			if(objData['code'] == '0000'){
+				alert(objData['msg']);
+				cp_agent_order_load();
+				return;
+			}else{
+				alert(objData['msg']);
+			}
+		}
+	});
+}
+//修改
+function cp_agent_order_change(strId){
+	if(strId){
+		alert("获取不到ID,修改失败");
+		return;
+	}
+	var agentEmail = $("#text_agent_order_email").val();
+	var agentOrderContents = $("#text_agent_order_contents").val();
+	var agentOrderBatch = $("#text_agent_order_batch").val();
+	var agentOrderPrice = $("#text_agent_order_price").val();
+	var agentOrderAddress = $("#text_agent_order_address").val();
+	var objPost = {};
+	var objData = {};
+	var objWhere = {};
+	if(agentEmail == "" || agentOrderContents == "" || agentOrderAddress == "" || agentOrderBatch == "" || agentOrderPrice == "" ){
+		alert("必填数据不能为空");
+		return;
+	}
+	objData = {agent_enail:agentEmail,agent_order_batch:agentOrderBatch,
+		agent_order_address:agentOrderAddress,agent_order_price:agentOrderPrice,agent_order_note:agentOrderContents};
+	objWhere = {id:strId};
+	objPost = {value:objData,where:objWhere};	
+	var jsonPost = json.stringify(objPost);
+	var ajaxUrl = "?mod=agent_order&mod_func=change";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:jsonPost,
+		dataType:'text',
+		success:function(jsonDataa){
+			var objData = JSON.parse(jsonData);
+			if(objData['code'] == '0000'){
+				alert(objData['msg']);
+				cp_agent_order_load();
+				return;
+			}else{
+				alert(objData['msg']);
+			}
+		}
+	});	
 }
