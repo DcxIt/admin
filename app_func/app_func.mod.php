@@ -2,6 +2,7 @@
 include_once("./db_mod/db_connect.mod.php");
 include_once("./db_mod/db_method.mod.php");
 function cp_app_inital(){
+
 	session_start();
 	//action 表示跳转的页面
 	if(!isset($_GET["action"]) && !isset($_GET["mod"]) && !isset($_GET["mod_func"])){
@@ -35,6 +36,7 @@ function cp_app_inital(){
 		}
 		$output = file_get_contents($strSrc); 
 		$output = str_replace("{path}","./",$output);
+		$output = str_replace("{admin_name}",$_SESSION['admin_name'],$output);
 		echo $output;
 		return;		
 	} 

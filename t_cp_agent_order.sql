@@ -34,9 +34,11 @@ CREATE TABLE `t_cp_agent_order` (
   `agent_order_send_date` time NOT NULL DEFAULT '00:00:00' COMMENT '订单发货时间',
   `agent_order_recev_date` time NOT NULL DEFAULT '00:00:00' COMMENT '订单收货时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `t_cp_agent_order` */
+
+insert  into `t_cp_agent_order`(`id`,`agent_order_number`,`agent_name`,`agent_order_detail`,`agent_order_note`,`agent_order_price`,`agent_email`,`agent_order_address`,`agent_order_batch`,`agent_order_status`,`agent_order_send_date`,`agent_order_recev_date`) values (1,0,'1','','1',0,'1','0','0',0,'00:00:00','00:00:00'),(4,0,'4','','',0,'0','0','0',0,'00:00:00','00:00:00'),(5,0,'5','','',0,'0','0','0',0,'00:00:00','00:00:00'),(6,0,'6','','',0,'0','0','0',0,'00:00:00','00:00:00'),(7,0,'7','','',0,'0','0','0',0,'00:00:00','00:00:00'),(8,0,'8','','',0,'0','0','0',0,'00:00:00','00:00:00'),(9,0,'9','','',0,'0','0','0',0,'00:00:00','00:00:00'),(10,0,'10','','',0,'0','0','0',0,'00:00:00','00:00:00'),(11,0,'11','','',0,'0','0','0',0,'00:00:00','00:00:00'),(14,0,'14','','',0,'0','0','0',0,'00:00:00','00:00:00'),(15,0,'2','','2',0,'2','0','2',0,'00:00:00','00:00:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

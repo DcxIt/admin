@@ -17,7 +17,7 @@
 		return $result;
 	}
 	/*数据分页*/
-	function cp_db_sql_page($page,$limit,$strWhere="",$strTableName,$flag = false){
+	function cp_db_sql_page($page,$limit,$strTableName,$flag = false){
 		if($strTableName == ""){
 			return false;
 		}

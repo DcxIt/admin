@@ -8,7 +8,7 @@
 		}else{
 			$strWhere = "";
 		}
-		$arrResult = cp_db_sql_page($page,$limit,$strWhere,"t_cp_agent_info");
+		$arrResult = cp_db_sql_page($page,$limit,"t_cp_agent_info");
 		if(count($arrResult) == 0){
 			$arrBackResult = array(
 				"code" => "error",

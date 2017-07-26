@@ -16,6 +16,7 @@ function cp_agent_info_count_all(gWhere=""){
 	    data:gWhere,
 	    dataType:"text",
 	    success:function(jsonData){
+	    	console.log(jsonData);
 	    	var objData = JSON.parse(jsonData);
 	    	if(objData['code'] == "error"){
 	    		alert(objData['msg']);
@@ -75,7 +76,7 @@ function cp_agent_info_fetch_list(gPage=1,gLimit=10,gWhere=""){
 	    		html += "<td>"+objList[strKey]['agent_email']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_address']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_country']+"</td>";
-	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button onclick='cp_agent_info_delete(\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-danger delete'>删除</button></td>";
+	    		html += "<td><button onclick='cp_agent_info_change(\""+objList[strKey]["agent_name"]+"\",\""+strSex+"\",\""+objList[strKey]["agent_age"]+"\",\""+objList[strKey]["agent_phone"]+"\",\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_address"]+"\",\""+objList[strKey]["agent_country"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button onclick='cp_agent_info_delete(\""+objList[strKey]["id"]+"\")' type='button' style='margin-left:5px;' class='btn btn-danger delete'>删除</button></td>";
 	    		html += "</tr>";
 	    		$("#agent_info_table").append(html);
 	    	}

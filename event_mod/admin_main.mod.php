@@ -38,7 +38,23 @@
 			return;
 		}
 		$strHtml = file_get_contents($strSrc);
-		file_put_contents("c:/1.txt",$strHtml);
 		echo $strHtml;
+	}
+
+	function cp_admin_main_sign_out(){
+		$strAdminName = file_get_contents("php://input");
+		unset ($_SESSION['admin_name']);
+		$result = session_destroy();
+		$arrResultBack = array(
+			"code" => "error",
+			"msg" => "session销毁失败"
+		);
+		if($result == true){
+			$arrResultBack = array(
+				"code" => "0000",
+				"msg" => "成功退出"
+			);
+		}
+		echo json_encode($arrResultBack);
 	}
 ?>

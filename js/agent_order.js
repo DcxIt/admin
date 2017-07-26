@@ -2,6 +2,7 @@ var gAgentOrderCount = 0;
 var gPage = 1;
 var gLimit = 10;
 function cp_agent_order_load(){
+	$("#agent_order_page_ul").children().remove();
 	cp_agent_order_count_all();
 	cp_agent_order_fetch_list();	
 }
@@ -39,14 +40,21 @@ function cp_agent_order_fetch_list(gPage=1,gLimit=10){
 	    		html += "<td>"+objList[strKey]['agent_order_status']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_order_send_date']+"</td>";
 	    		html += "<td>"+objList[strKey]['agent_order_recev_date']+"</td>";
-	    		html += '<td><button onclick="cp_agent_order_change()" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalChange">修改</button><button type="button" class="btn btn-danger delete">删除</button></td>';
+	    		html += "<td><button onclick='cp_agent_order_change_show(\""+objList[strKey]["agent_email"]+"\",\""+objList[strKey]["agent_order_batch"]+"\",\""+objList[strKey]["agent_order_note"]+"\",\""+objList[strKey]["agent_order_price"]+"\",\""+objList[strKey]["agent_order_address"]+"\",\""+objList[strKey]["id"]+"\")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModalChange'>修改</button><button type='button' onclick='cp_agent_order_delete(\""+objList[strKey]["id"]+"\")' style='margin-left:5px;' class='btn btn-danger delete'>删除</button></td>";
 	    		html += "</tr>";
 	    		$("#agent_order_table").append(html);
 	    	}
 	    }
 	});	
 }
-
+function cp_agent_order_change_show(email,batch,contents,price,address,id){
+	$("#text_agent_order_email").val(email);
+	$("#text_agent_order_batch").val(batch);
+	$("#text_agent_order_contents").val(contents);
+	$("#text_agent_order_price").val(price);
+	$("#text_agent_order_address").val(address);
+	$("#text_agent_order_id").val(id);
+}
 function cp_agent_order_count_all(){
 	var ajaxUrl = "?mod=agent_order&mod_func=count_all";
 	$.ajax({
@@ -111,20 +119,20 @@ function cp_agent_order_add(){
 }
 //删除
 function cp_agent_order_delete(strId){
-	if(strId){
+	if(strId == ""){
 		alert("获取不到ID,删除失败");
 		return;
 	}
 	var objPost = {};
 	objPost = {id:strId};
-	var jsonPost = JOSN.stringify(objPost);
+	var jsonPost = JSON.stringify(objPost);
 	var ajaxUrl = "?mod=agent_order&mod_func=delete";
 	$.ajax({
 		type:"POST",
 		url:ajaxUrl,
 		data:jsonPost,
 		dataType:'text',
-		success:function(jsonDataa){
+		success:function(jsonData){
 			var objData = JSON.parse(jsonData);
 			if(objData['code'] == '0000'){
 				alert(objData['msg']);
@@ -137,16 +145,13 @@ function cp_agent_order_delete(strId){
 	});
 }
 //修改
-function cp_agent_order_change(strId){
-	if(strId){
-		alert("获取不到ID,修改失败");
-		return;
-	}
+function cp_agent_order_change(){
 	var agentEmail = $("#text_agent_order_email").val();
 	var agentOrderContents = $("#text_agent_order_contents").val();
 	var agentOrderBatch = $("#text_agent_order_batch").val();
 	var agentOrderPrice = $("#text_agent_order_price").val();
 	var agentOrderAddress = $("#text_agent_order_address").val();
+	var id = $("#text_agent_order_id").val();
 	var objPost = {};
 	var objData = {};
 	var objWhere = {};
@@ -154,18 +159,18 @@ function cp_agent_order_change(strId){
 		alert("必填数据不能为空");
 		return;
 	}
-	objData = {agent_enail:agentEmail,agent_order_batch:agentOrderBatch,
+	objData = {agent_email:agentEmail,agent_order_batch:agentOrderBatch,
 		agent_order_address:agentOrderAddress,agent_order_price:agentOrderPrice,agent_order_note:agentOrderContents};
-	objWhere = {id:strId};
+	objWhere = {id:id};
 	objPost = {value:objData,where:objWhere};	
-	var jsonPost = json.stringify(objPost);
+	var jsonPost = JSON.stringify(objPost);
 	var ajaxUrl = "?mod=agent_order&mod_func=change";
 	$.ajax({
 		type:"POST",
 		url:ajaxUrl,
 		data:jsonPost,
 		dataType:'text',
-		success:function(jsonDataa){
+		success:function(jsonData){
 			var objData = JSON.parse(jsonData);
 			if(objData['code'] == '0000'){
 				alert(objData['msg']);

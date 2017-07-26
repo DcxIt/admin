@@ -23,13 +23,12 @@ function cp_admin_main_menu_apppend_func(objMenu,strParent){
 		if(objMenu[key]["menu_list"]){
 			var li = $("<li></li>");
 			li = $(li).append("<a id="+key+" onclick='cp_admin_main_hide_func(this)'>"+objMenu[key]["menu_name"]+"</a>");
-			li = $(li).append("<ul style='list-style:none;display:none;padding:0'></ul>");
+			li = $(li).append("<ul class='left_menu_li2' style='list-style:none;display:none;padding:0'></ul>");
 			$(li).appendTo(strParent);
 			cp_admin_main_menu_apppend_func(objMenu[key]["menu_list"],$(li).children().eq(1));
 		}else{
-			console.log(key);
 			var li = $("<li></li>");
-			li = $(li).append("<a id="+key+" onclick='cp_admin_main_html_contents_func(this)'>"+objMenu[key]+"</a>");
+			li = $(li).append("<a id="+key+" onclick='cp_admin_main_html_contents_func(this)'>&nbsp&nbsp&nbsp"+objMenu[key]+"</a>");
 			$(li).appendTo(strParent);
 		}
 		
@@ -58,4 +57,28 @@ function cp_admin_main_html_contents_func(obj){
 		}
 
 	})
+}
+
+function cp_admin_main_back(admin_name){
+	if(admin_name == ""){
+		alert("无法获取到账户退出失败");
+		return;
+	}
+	var ajaxUrl = "?mod=admin_main&mod_func=sign_out";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:admin_name,
+		dataType:"text",
+		success:function(jsonData){
+			var objData = JSON.parse(jsonData);
+			if(objData['code'] == "0000"){
+				alert(objData['msg']);
+				window.location.href = "?action=login";
+				return;
+			}
+			alert(objData['msg']);
+		}
+
+	})	
 }

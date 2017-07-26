@@ -8,20 +8,20 @@
 <link rel="stylesheet" href="{path}css/bootstrap.css">
 <link rel="stylesheet" href="{path}css/admin_main.css">
 <!-- <link rel="stylesheet" href="{path}css/agent_info.css"> -->
-<script type="text/javascript" src="{path}js/agent_info.js"></script>
 <script type="text/javascript" src="{path}js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="{path}js/bootstrap.js"></script>
 <script type="text/javascript" src="{path}js/admin_main.js"></script>
-
+<script type="text/javascript" src="{path}js/agent_order.js"></script>
+<script type="text/javascript" src="{path}js/agent_info.js"></script>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">唯诚</a>
+	      <a class="navbar-brand" href="#">春晖后台管理系统</a>
 	    </div>
 	    <ul class="nav navbar-nav navbar-right">
-	      <li><a><span class="glyphicon glyphicon-user"></span></a></li>
-	      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 退出</a></li>
+	      <li><a><span class="glyphicon glyphicon-user">{admin_name}</span></a></li>
+	      <li><a href="#" onclick="cp_admin_main_back('{admin_name}')"><span class="glyphicon glyphicon-log-in"></span> 退出</a></li>
 	    </ul>
 	  </div>
 	</nav>

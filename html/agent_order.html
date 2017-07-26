@@ -1,6 +1,6 @@
 ﻿
 <div class="panel panel-default agent_info_search">
-  <div class="panel-body">
+  <div class="panel-body" style="display:-webkit-inline-box;">
       <input type="text" class="form-control agent_info_input1" placeholder="模糊搜索">
       <button type='button' class='btn btn-warning'>搜索</button>
       <button type='button' class='btn btn-warning' data-toggle="modal" data-target="#myModalAgentOrder">创建订单</button>  
@@ -29,7 +29,7 @@
     </table>
 
     <div>总数:<span id="agent_order_sum_numbers"></span>当前页:<span id="agent_order_page_now"></span></div>
-    <ul class="pagination" id="agent_order_page_ul">
+    <ul class="pagination" id="agent_order_page_ul" style="margin-left:415px">
   <!--          <li><a href="#">&laquo;</a></li>
       <li class="active"><a href="#">第一页</a></li>
       <li class="disabled"><a href="#">2</a></li>
@@ -77,6 +77,7 @@
           <li>订单内容：<input type="text" class="form-control agent_info_input2" id="text_agent_order_contents"></li>
           <li>订单价格：<input type="text" class="form-control agent_info_input2" id="text_agent_order_price"></li>
           <li>订单地址：<input type="text" class="form-control agent_info_input2" id="text_agent_order_address"></li>
+          <input type="hidden" class="form-control agent_info_input2" id="text_agent_order_id">
         </ul>
       </div>
       <div class="modal-footer agent_info_button_add">

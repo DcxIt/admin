@@ -19,7 +19,6 @@
 	}
 	function cp_agent_order_count_all(){
 		$arrResult = cp_db_sql_page("","","t_cp_agent_order",true);
-		file_put_contents("c:/5.txt",var_export($arrResult,1));
 		if(count($arrResult) > 0 && is_array($arrResult)){
 			$arrBackResult = array(
 				"code" => "0000",
@@ -45,7 +44,7 @@
 			echo $jsonBackResult;
 			return;
 		}
-		$result = cp_db_sql_insert($arrValue,"t_cp_agent_order");
+		$result = cp_db_sql_insert($arrData,"t_cp_agent_order");
 		if($result == true){
 			$arrBackResult['code'] = '0000';
 			$arrBackResult['msg'] = '订单创建成功';

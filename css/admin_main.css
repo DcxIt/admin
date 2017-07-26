@@ -24,9 +24,15 @@
     text-align: center;
     margin:0;
 }
+#admin_main_left_menu_ul li{
+    background-color: white;
+}
 #admin_main_left_menu_ul li a{
-    background-color: #467ca2;
+/*    background-color: #467ca2;
     border: solid 1px #316a91;
     border-bottom: 0;
-    color:white;
+    color:white;*/
+}
+.left_menu_li2 li{
+    background-color: white;
 }

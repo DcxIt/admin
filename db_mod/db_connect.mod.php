@@ -1,7 +1,7 @@
 <?php
 	header("Content-type: text/html; charset=utf-8");
 	function cp_db_connect_get(){
-		$strLink = new mysqli('127.0.0.1','root','123456','test');
+		$strLink = new mysqli('bdm251094557.my3w.com','bdm251094557','zhangzhen1314','bdm251094557_db');
 		if(!$strLink){
 			exit("链接失败");
 		}
