@@ -11,7 +11,8 @@
 	function cp_db_query_for_all($strSql){
 		$connect = cp_db_connect_get();
 		$result = $connect -> query($strSql);
-		$result = $result -> fetch_all();
+		$result = $result -> fetch_row();
+		file_put_contents("c:/1.txt",var_export($result,1));		
 		return $result;
 	}
 
@@ -38,6 +39,5 @@
 		$connect = cp_db_connect_get();
 		$result = $connect -> query($strSql);
 		return $result;
-		et_file_write("c:/1.txt",var_result($result,1));
 	} 
 ?>
