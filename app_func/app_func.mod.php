@@ -8,9 +8,11 @@ function cp_app_inital(){
 	if(!isset($_GET["action"]) && !isset($_GET["mod"]) && !isset($_GET["mod_func"])){
 		$output=file_get_contents('./website/index.html'); 
 		$output = str_replace("{js}","./website/js",$output);
+		$output = str_replace("{newPathJs}","./js",$output);
 		$output = str_replace("{css}","./website/css",$output);
 		$output = str_replace("{img}","./website/img",$output);
 		$output = str_replace("{font-awesome-4.2.0}","./website/font-awesome-4.2.0",$output);
+		$output = str_replace("{newPathCss}","./css",$output);
 		echo $output;
 		return;
 	}else if(isset($_GET['action'])){
