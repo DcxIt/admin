@@ -1,7 +1,57 @@
-.content{
-	border: 1px solid black;
-    padding: 0px;
+.container1{
+	/*background-image: url("../img/1.jpg");*/
+	background-size: 100%;
+	position: relative;
 }
-.content h4{
-	color:black;
+
+.ul1 li {
+	margin-left:20px;
+	font-size: 17px;
+    font-weight: bolder;
+}
+
+.ul1{
+	margin-left:5%;
+}
+
+.nav_1{
+/*	height:45%;
+	width:45%;*/
+	position: relative;
+	margin:0 auto;
+}
+
+.navbar_1{
+	margin:0px;
+}
+
+.ul2{
+	list-style: none;
+	padding: 0;
+}
+.ul2 li a img{
+	margin:0 auto;
+}
+
+.ul2 li{
+	margin: 0 auto;
+	width:1000px;
+	height: 500px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding: 0;
+	background-image: url("../img/slide2.jpg");
+}
+
+.prev{
+	z-index: 500;
+    position: absolute;
+    margin-top: 200px;
+}
+
+.next{
+	z-index: 500;
+    position: relative;
+    margin-top: 200px;
+    float: right;
 }

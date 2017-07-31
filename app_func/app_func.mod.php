@@ -6,12 +6,8 @@ function cp_app_inital(){
 	session_start();
 	//action 表示跳转的页面
 	if(!isset($_GET["action"]) && !isset($_GET["mod"]) && !isset($_GET["mod_func"])){
-		$output=file_get_contents('./website/index.html'); 
-		$output = str_replace("{js}","./website/js",$output);
+		$output=file_get_contents('./web/index.html'); 
 		$output = str_replace("{newPathJs}","./js",$output);
-		$output = str_replace("{css}","./website/css",$output);
-		$output = str_replace("{img}","./website/img",$output);
-		$output = str_replace("{font-awesome-4.2.0}","./website/font-awesome-4.2.0",$output);
 		$output = str_replace("{newPathCss}","./css",$output);
 		$output = str_replace("{newPathImg}","./img",$output);
 		echo $output;
