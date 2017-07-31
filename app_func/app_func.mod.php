@@ -13,6 +13,7 @@ function cp_app_inital(){
 		$output = str_replace("{img}","./website/img",$output);
 		$output = str_replace("{font-awesome-4.2.0}","./website/font-awesome-4.2.0",$output);
 		$output = str_replace("{newPathCss}","./css",$output);
+		$output = str_replace("{newPathImg}","./img",$output);
 		echo $output;
 		return;
 	}else if(isset($_GET['action'])){
