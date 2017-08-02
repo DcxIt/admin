@@ -34,6 +34,7 @@
     color: #FFF;
     text-decoration: underline;
     margin-top:15px; 
+    cursor: pointer;
 }
 .instroduce_container1-1-2 ul li a{
 	color:#FFF;
@@ -56,4 +57,33 @@
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	height: 400px;
+}
+
+.instroduce_team_img{
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url("../img/team.jpg");
+	height: 340px;
+}
+
+.instroduce_team_text{
+	height:500px;
+	background-color: #FFF;
+	height:266px;
+}
+
+.instroduce_culture_img ul{
+	list-style: none;
+	display: -webkit-inline-box;
+}
+
+.instroduce_culture_img ul li img{
+	width: 230px;
+	height:230px;
+}
+
+.instroduce_culture_img ul li {
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
 }
