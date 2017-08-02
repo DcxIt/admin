@@ -4,9 +4,6 @@ $(document).ready(
 	}
 );
 var gPx = 48;
-/*function cp_reception_load(){
-	var ajaxUrl = "";
-}*/
 
 function reception_banner_change(){
 	var strLiLength = $(".ul2 li").length;
@@ -35,3 +32,20 @@ function reception_paoma_light(){
 	$(".container6-1-1 ul li").eq(0).css("margin-left",marginLeft);
 }
 setInterval("reception_paoma_light()",25);
+
+
+function reception_html_change(strHtml){
+	if(strHtml == ""){
+		alert("无法获取到strHtml参数");
+		return;
+	}
+	var strSrc = "./web/"+strHtml+".html";
+    $.get(strSrc,function(data,status){
+    	if(status != "success"){
+    		alert("跳转页面失败");
+    		return;
+    	}
+		$("#all_contents").html("");
+		$(data).appendTo($("#all_contents"));    	
+    });	
+}

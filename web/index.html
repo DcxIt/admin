@@ -5,6 +5,7 @@
 </head>
 <link rel="stylesheet" type="text/css" href="{newPathCss}/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="{newPathCss}/reception_index.css">
+<link rel="stylesheet" type="text/css" href="{newPathCss}/reception_instroduce.css">
 <script type="text/javascript" src="{newPathJs}/bootstrap.js"></script>
 <script type="text/javascript" src="{newPathJs}/jquery-3.2.1.js"></script>
 <!-- <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script> -->
@@ -21,13 +22,13 @@
 				</div>
 				<div>
 					<ul class="nav navbar-nav ul1">
-						<li><a href="#">首页</a></li>
-						<li><a href="#">企业简介</a></li>
-						<li><a href="#">企业新闻</a></li>
-						<li><a href="#">企业资质</a></li>
-						<li><a href="#">产品展示</a></li>
-						<li><a href="#">在线留言</a></li>
-						<li><a href="#">联系方式</a></li>
+						<li><a href="./index.php">首页</a></li>
+						<li><a href="#" onclick="reception_html_change('instroduce')">企业简介</a></li>
+						<li><a href="#" onclick="reception_html_change('news')">企业新闻</a></li>
+						<li><a href="#" onclick="reception_html_change('')">企业资质</a></li>
+						<li><a href="#" onclick="reception_html_change('products')">产品展示</a></li>
+						<li><a href="#" onclick="reception_html_change('')">在线留言</a></li>
+						<li><a href="#" onclick="reception_html_change('link_me')">联系方式</a></li>
 					</ul>
 				</div>
 			</div>
@@ -45,134 +46,136 @@
 		</ul>			
 	</div>
 
-	<div class="container container3">
-		<div class="col-md-12 container3-1">
+	<div id="all_contents">
+
+		<div class="container container3">
+			<div class="col-md-12 container3-1">
+			</div>
 		</div>
-	</div>
 
-	<div class="container container4">
-		<div class="col-md-12 container4-1">
-			<ul class="C4li">
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>	
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-			</ul>
-
-			<ul class="C4li">
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>	
-				<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="container container5">
-		<div class="col-md-12 container5-2">
-		</div>
-		<div class="col-md-12 container5-1">
-		</div>
-	</div>
-
-	<div class="container container6">
-		<span class="prev2"><img src="./img/arrow1.png"/></span>
-		<span class="next2"><img src="./img/arrow2.png"/></span>
-		<div class="col-md-12 container6-1">
-			<div class="container6-1-1">
-				<ul>
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao1.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao1.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-					
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
-
-					<li>
-						<div>
-							<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
-							<div><h5>材料标题</h5></div>
-							<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
-						</div>
-					</li>
+		<div class="container container4">
+			<div class="col-md-12 container4-1">
+				<ul class="C4li">
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>	
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
 				</ul>
-			</div>		
-		</div> 
-	</div>
 
-
-	<div class="container container7">
-		<div class="col-md-12 container7-2">
+				<ul class="C4li">
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>	
+					<li><span class="glyphicon glyphicon-volume-up"><a>&nbsp新闻热点1</a></span></li>
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-12 container7-1">
+
+		<div class="container container5">
+			<div class="col-md-12 container5-2">
+			</div>
+			<div class="col-md-12 container5-1">
+			</div>
+		</div>
+
+		<div class="container container6">
+			<span class="prev2"><img src="./img/arrow1.png"/></span>
+			<span class="next2"><img src="./img/arrow2.png"/></span>
+			<div class="col-md-12 container6-1">
+				<div class="container6-1-1">
+					<ul>
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao1.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao1.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+						
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<div class="class_div1"><img src="./img/cailiao2.jpg" class="img-responsive class_img1"></div>
+								<div><h5>材料标题</h5></div>
+								<div class="text_detail1">材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容材料内容</div>
+							</div>
+						</li>
+					</ul>
+				</div>		
+			</div> 
+		</div>
+
+
+		<div class="container container7">
+			<div class="col-md-12 container7-2">
+			</div>
+			<div class="col-md-12 container7-1">
+			</div>
+		</div>
+
+
+		<div class="container container8">
+			<div class="container8-4 col-md-12">
+					<div class="col-md-3 container8-1 col8">
+						<img src="./img/f2.jpg" class="img-responsive class_img2">
+					</div>
+					<div class="col-md-6 container8-2 col8">
+							   福建阿石创新材料股份有限公司成立于2002年，是福建省高新技术企业，多年来致力于薄膜材料的研发、生产与销售。
+					   阿石创薄膜材料，可以分为溅射靶材、蒸镀材料与镀膜配件三大产品线，主要应用于光学、光通信、平板显示（LCD、OLED）、触控面板、LED芯片、集成电路、LOW-E玻璃、装饰镀膜、工具镀膜、光伏太阳能等领域，产品远销国内外市场，具有丰富的行业实绩。
+					   阿石创将秉承"用戶至上，信誉第一"的宗旨，不断加强企业创新管理，加快实施品质和科技创新兴企战略，以领先行业的工艺水准与技术储备，以完善的品质体系，为全球的客户服务，打造薄膜材料行业的顶尖品牌。 阿石创将秉承"用戶至上，信誉第一"的宗旨，不断加强企业创新管理，加快实施品质和科技创新兴企战略，以领先行业的工艺水准与技术储备，以完善的品质体系，为全球的客户服务，打造薄膜材料行业的顶尖品牌。 阿石创将秉承"用戶至上，信誉第一"的宗旨.
+					</div>
+					<div class="col-md-3 container8-3 col8">
+						<img src="./img/f2.jpg" class="img-responsive class_img3">
+					</div>
+			</div>
 		</div>
 	</div>
-
-
-	<div class="container container8">
-		<div class="container8-4 col-md-12">
-				<div class="col-md-3 container8-1 col8">
-					<img src="./img/f2.jpg" class="img-responsive class_img2">
-				</div>
-				<div class="col-md-6 container8-2 col8">
-						   福建阿石创新材料股份有限公司成立于2002年，是福建省高新技术企业，多年来致力于薄膜材料的研发、生产与销售。
-				   阿石创薄膜材料，可以分为溅射靶材、蒸镀材料与镀膜配件三大产品线，主要应用于光学、光通信、平板显示（LCD、OLED）、触控面板、LED芯片、集成电路、LOW-E玻璃、装饰镀膜、工具镀膜、光伏太阳能等领域，产品远销国内外市场，具有丰富的行业实绩。
-				   阿石创将秉承"用戶至上，信誉第一"的宗旨，不断加强企业创新管理，加快实施品质和科技创新兴企战略，以领先行业的工艺水准与技术储备，以完善的品质体系，为全球的客户服务，打造薄膜材料行业的顶尖品牌。 阿石创将秉承"用戶至上，信誉第一"的宗旨，不断加强企业创新管理，加快实施品质和科技创新兴企战略，以领先行业的工艺水准与技术储备，以完善的品质体系，为全球的客户服务，打造薄膜材料行业的顶尖品牌。 阿石创将秉承"用戶至上，信誉第一"的宗旨.
-				</div>
-				<div class="col-md-3 container8-3 col8">
-					<img src="./img/f2.jpg" class="img-responsive class_img3">
-				</div>
-		</div>
-	</div>
-
 	<div class="container container9">
 		<div class="col-md-12 container9-2">
 		</div>
@@ -189,5 +192,6 @@
 
 
 </body>
-<script src="{newPathJs}/reception_controller.js"></script>
+<script src="{newPathJs}/reception_index.js"></script>
+<script src="{newPathJs}/reception_instroduce.js"></script>
 </html>
