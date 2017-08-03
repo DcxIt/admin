@@ -44,13 +44,28 @@ body{
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0;
-	background-image: url("../img/slide2.jpg");
+	
 }
+.b1{
+background-image: url("../img/b1.jpg");
+}
+.b2{
+background-image: url("../img/b2.jpg");
 
+}
+.b3{
+background-image: url("../img/b3.jpg");
+
+}
+.b4{
+background-image: url("../img/b4.jpg");
+
+}
 .prev{
 	z-index: 500;
     position: absolute;
     margin-top: 200px;
+    cursor: pointer;
 }
 
 .next{
@@ -58,6 +73,7 @@ body{
     position: relative;
     margin-top: 200px;
     float: right;
+    cursor: pointer;
 }
 .container3-1{
     background-size: 100%;

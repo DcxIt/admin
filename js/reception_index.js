@@ -20,7 +20,7 @@ function reception_banner_change(){
 		}
 	}
 }
-setInterval("reception_banner_change()",2000);
+setInterval("reception_banner_change()",5000);
 
 function reception_paoma_light(){
 	gPx -= 1;
@@ -48,4 +48,37 @@ function reception_html_change(strHtml){
 		$("#all_contents").html("");
 		$(data).appendTo($("#all_contents"));    	
     });	
+}
+
+
+function reception_banner_next(){
+	var strLiLength = $(".ul2 li").length;
+	for(var i = 0;i<strLiLength+1;i++){
+		var display = $(".ul2 li").eq(i).css("display");
+		if(display == 'block'){
+			$(".ul2 li").eq(i).css("display","none");
+				var j = i + 1;
+				if(j == 4){
+					var j = 0;
+				}
+				$(".ul2 li").eq(j).css("display","block");
+				break;
+		}
+	}
+}
+
+function reception_banner_prev(){
+	var strLiLength = $(".ul2 li").length;
+	for(var i = 0;i<strLiLength+1;i++){
+		var display = $(".ul2 li").eq(i).css("display");
+		if(display == 'block'){
+			$(".ul2 li").eq(i).css("display","none");
+				var j = i - 1;
+				if(j == -1){
+					var j = 3;
+				}
+				$(".ul2 li").eq(j).css("display","block");
+				break;
+		}
+	}	
 }

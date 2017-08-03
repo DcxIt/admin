@@ -1,5 +1,5 @@
 .product_container1{
-	height: 700px;
+	background-color: #FFF;
 }
 
 .product_container1-1{
@@ -60,4 +60,25 @@
 
 .product_ul1 li{
 	margin-left: 30px;
+}
+.fa-angle-double-left{
+     font-size: 60px;
+    color: red;
+    z-index: 5;
+    position: relative;
+    top: 64px;
+    left: 53px;   
+}
+
+.product_div1{
+    width: 80%;
+    margin-left: 87px;
+}
+
+.fa-angle-double-right{
+    font-size: 60px;
+    color: red;
+    float: right;
+    margin-right: 60px;
+    margin-top: -80px;    
 }
