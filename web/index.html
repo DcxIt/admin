@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{newPathCss}/reception_index.css">
 <link rel="stylesheet" type="text/css" href="{newPathCss}/reception_instroduce.css">
 <link rel="stylesheet" type="text/css" href="{newPathCss}/reception_product.css">
+<link rel="stylesheet" type="text/css" href="{newPathCss}/reception_news.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 <script type="text/javascript" src="{newPathJs}/bootstrap.js"></script>
 <script type="text/javascript" src="{newPathJs}/jquery-3.2.1.js"></script>
@@ -26,11 +27,10 @@
 					<ul class="nav navbar-nav ul1">
 						<li><a href="./index.php">首页</a></li>
 						<li><a href="#" onclick="reception_html_change('instroduce')">企业简介</a></li>
-						<li><a href="#" onclick="reception_html_change('')">企业新闻</a></li>
+						<li><a href="#" onclick="reception_html_change('news')">企业新闻</a></li>
 						<li><a href="#" onclick="reception_html_change('')">企业资质</a></li>
 						<li><a href="#" onclick="reception_html_change('product')">产品展示</a></li>
-						<li><a href="#" onclick="reception_html_change('')">在线留言</a></li>
-						<li><a href="#" onclick="reception_html_change('')">联系方式</a></li>
+						<li><a href="#" onclick="reception_html_change('link')">联系方式</a></li>
 					</ul>
 				</div>
 			</div>
@@ -41,10 +41,10 @@
 		<span class="prev" onclick="reception_banner_prev()"><img src="./img/arrow1.png" alt="arrow" /></span>
 		<span class="next" onclick="reception_banner_next()"><img src="./img/arrow2.png" alt="arrow" /></span>
 		<ul class="ul2">
-			<li class='b1' style="display:block"></li>
-			<li class='b2' style="display:none"></li>
+<!-- 			<li class='b1' style="display:block"></li>
+			<li onclick="reception_html_change('news')" class='b2' style="display:none"></li>
 			<li class='b3' style="display:none"></li>
-			<li class='b4' style="display:none"></li>
+			<li class='b4' style="display:none"></li> -->
 		</ul>			
 	</div>
 
@@ -83,8 +83,8 @@
 		</div>
 
 		<div class="container container6">
-			<span class="prev2"><img src="./img/arrow1.png"/></span>
-			<span class="next2"><img src="./img/arrow2.png"/></span>
+			<span class="prev2" onclick="reception_paoma_light_left()"><img src="./img/arrow1.png"/></span>
+			<span class="next2" onclick="reception_paoma_light_right()"><img src="./img/arrow2.png"/></span>
 			<div class="col-md-12 container6-1">
 				<div class="container6-1-1">
 					<ul>
@@ -196,4 +196,5 @@
 </body>
 <script src="{newPathJs}/reception_index.js"></script>
 <script src="{newPathJs}/reception_instroduce.js"></script>
+<script src="{newPathJs}/reception_news.js"></script>
 </html>

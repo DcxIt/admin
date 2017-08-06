@@ -11,8 +11,7 @@
 	function cp_db_query_for_all($strSql){
 		$connect = cp_db_connect_get();
 		$result = $connect -> query($strSql);
-		$result = $result -> fetch_row();
-		file_put_contents("c:/1.txt",var_export($result,1));		
+		$result = $result -> fetch_row();		
 		return $result;
 	}
 
@@ -21,6 +20,7 @@
 		$result = $connect -> query($strSql);
 		$arrData=array();
 		$arrResult = array();
+
 		while($row=mysqli_fetch_array($result)){
 		    $arrData[]=$row;
 		}

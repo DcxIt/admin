@@ -24,8 +24,11 @@
     text-align: center;
     margin:0;
 }
-#admin_main_left_menu_ul li{
-    background-color: white;
+.left_menu_li_first{
+    background-color: red;
+    border:solid 1px;
+    cursor: pointer;
+    text-align: -webkit-left;
 }
 #admin_main_left_menu_ul li a{
 /*    background-color: #467ca2;
@@ -35,4 +38,7 @@
 }
 .left_menu_li2 li{
     background-color: white;
+    border:solid 1px;
+    cursor: pointer;
+    text-align: -webkit-left;
 }

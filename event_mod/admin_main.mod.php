@@ -18,6 +18,16 @@
 				"menu_list" => array(
 					"agent_data_detail" => "数据分析"
 					)
+				),
+			"Web_controller" => array(
+				"menu_name" => "前台控制",
+				"menu_list" => array(
+					"cp_index" => "首页",
+					"cp_instroduce" => "企业简",
+					"cp_news" => "企业新闻",
+					"product_show" => "产品展示",
+					"leav_message" => "留言版"
+					)
 				)
 		);
 		$jsonMenu = json_encode($arrMenu);
@@ -31,7 +41,6 @@
 			"msg" => "获取该页面失败"
 		);
 		$strSrc = "./html/".$jsonData.".html";
-		file_put_contents("c:/2.txt",$strSrc);
 		if(!file_exists($strSrc)){
 			$jsonResultBack = json_encode($arrResultBack);
 			echo $jsonResultBack;

@@ -1,6 +1,7 @@
 <?php
 include_once("./db_mod/db_connect.mod.php");
 include_once("./db_mod/db_method.mod.php");
+include_once("./common/common.php");
 function cp_app_inital(){
 
 	session_start();
@@ -42,17 +43,6 @@ function cp_app_inital(){
 	//mod 表示业务逻辑的判断
 	if(isset($_GET['mod'])){
 		$mod = $_GET['mod'];
-/*		$arrMod = array("admin_login","agent_info","agent_order","admin_main");
-		$flag = false;
-		foreach ($arrMod as $key => $value) {
-			if($value == $mod ){
-				$flag = true;
-				break;
-			}
-		}
-		if($flag == false){
-			exit("找不到该mod");
-		}*/
 		if(!isset($_GET['mod_func'])){
 			exit("您没有传递mod的方法");
 		}

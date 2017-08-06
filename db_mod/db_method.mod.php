@@ -72,4 +72,10 @@
 		$result = cp_db_insert_update_sql($strSql);
 		return $result;	
 	}
+	//
+	function cp_db_sql_for_list($strTableName){
+		$strSql = "select * from ".$strTableName;
+		$result = cp_db_query_for_list($strSql);
+		return $result;	
+	}
 ?>

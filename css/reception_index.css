@@ -44,9 +44,10 @@ body{
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0;
+	cursor: pointer;
 	
 }
-.b1{
+/*.b1{
 background-image: url("../img/b1.jpg");
 }
 .b2{
@@ -60,7 +61,7 @@ background-image: url("../img/b3.jpg");
 .b4{
 background-image: url("../img/b4.jpg");
 
-}
+}*/
 .prev{
 	z-index: 500;
     position: absolute;

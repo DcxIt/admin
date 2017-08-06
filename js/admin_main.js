@@ -21,9 +21,9 @@ function cp_admin_main_menu_apppend_func(objMenu,strParent){
 	
 	for(key in objMenu){
 		if(objMenu[key]["menu_list"]){
-			var li = $("<li></li>");
+			var li = $("<li class='left_menu_li_first'></li>");
 			li = $(li).append("<a id="+key+" onclick='cp_admin_main_hide_func(this)'>"+objMenu[key]["menu_name"]+"</a>");
-			li = $(li).append("<ul class='left_menu_li2' style='list-style:none;display:none;padding:0'></ul>");
+			li = $(li).append("<ul class='left_menu_li2' style='list-style:none;display:none;padding:0;background-color:white'></ul>");
 			$(li).appendTo(strParent);
 			cp_admin_main_menu_apppend_func(objMenu[key]["menu_list"],$(li).children().eq(1));
 		}else{

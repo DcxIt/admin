@@ -26,4 +26,22 @@
 		$jsonResultBack = json_encode($arrResultBack);
 		echo $jsonResultBack;
 	}*/
+
+	function cp_reception_controller_index_load(){
+		$arrResult = cp_db_sql_for_list("t_web_cp_index");
+		$a = json_encode($arrResult);
+
+		$arrResultBack = array(
+			"code" => "error",
+			"msg" => "数据库获取失败"
+		);
+		if($arrResult == false || count($arrResult) == 0){
+			echo json_encode($arrResultBack);
+			return;
+		}
+		$arrResultBack['code'] = '0000';
+		$arrResultBack['msg'] = 'success';
+		$arrResultBack['data'] = json_encode($arrResult);
+		echo json_encode($arrResultBack);
+	}
 ?>
