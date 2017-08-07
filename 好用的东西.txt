@@ -1,0 +1,9 @@
+1.sublime 好用的插件
+	1. Alignment
+	2.AutoFileName
+	3.BracketHlighlighter
+	4.DocBlockr
+	5.sublimeCodeIntel
+	6.SublimeLinter
+
+2.安装配置之后运行php文件

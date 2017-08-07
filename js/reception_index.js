@@ -30,12 +30,6 @@ function reception_banner_load(){
 	})
 }
 
-
-
-
-
-
-
 var gPx = 48;
 
 function reception_banner_change(){
