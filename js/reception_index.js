@@ -1,24 +1,24 @@
 $(document).ready(
 	function(){
 		reception_banner_load();
+		reception_news_load();
 	}
 );
 
 function reception_banner_load(){
-	var ajaxUrl = "?mod=reception_controller&mod_func=index_load";
+	var ajaxUrl = "?mod=reception_controller&mod_func=load";
 	$.ajax({
 		type:"POST",
 		url:ajaxUrl,
-		data:"",
+		data:"index",
 		dateType:"text",
-		success:function(jsonData){
-			var objData = JSON.parse(jsonData);
+		success:function(objData){
 			if(objData['code'] == 'error'){
 				alert(objData['msg']);
 				return;
 			}
 			var jsonBanner = objData['data'];
-			var objB = JSON.parse(jsonBanner);
+			var objB = jsonBanner;
 			var objBannerList = objB[0]["cp_banner"].split(",");
 			for(str in objBannerList){
 				var src = "./"+objBannerList[str];
@@ -30,6 +30,29 @@ function reception_banner_load(){
 	})
 }
 
+function reception_news_load(){
+var ajaxUrl = "?mod=reception_controller&mod_func=load";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:"news",
+		dateType:"text",
+		success:function(objData){
+			if(objData['code'] == 'error'){
+				alert(objData['msg']);
+				return;
+			}
+			var jsonNews = objData['data'];
+			var objNews = jsonNews;
+			for(str in objNews){
+				console.log(objNews[str]["cp_news_tittle"])
+				var li = "<li><span class='glyphicon glyphicon-volume-up'>"+objNews[str]["cp_news_tittle"]+"</span><li>";
+				$(li).appendTo($(".C4li"));
+			}
+
+		}
+	})	
+}
 var gPx = 48;
 
 function reception_banner_change(){

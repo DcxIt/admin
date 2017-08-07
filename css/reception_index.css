@@ -90,16 +90,26 @@ background-image: url("../img/b4.jpg");
 }
 
 .C4li{
-	list-style: none;
-	display: -webkit-box;
+    list-style: none;
+    /* display: -webkit-box; */
     font-size: 16px;
-    margin:0;
-    margin-top:20px;
+    /* margin: 0; */
+    /* margin-top: 20px; */
+    width: 671px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    margin-left: 165px;
 }
 
 .C4li li{
-	margin-left: 80px;
-	white-space:nowrap;
+    /* margin-left: 80px; */
+    /* white-space: nowrap; */
+    float: right;
+    display: block;
+    margin-top: 15px;
+    margin-left: 22px;
+    padding: 0;
 }
 
 .container5-1{

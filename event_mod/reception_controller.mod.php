@@ -1,4 +1,5 @@
 <?php
+header('content-type:application/json;charset=utf8');
 /*	function cp_reception_controller_container_html(){
 		$arrResultBack = array(
 			"code" => "error",
@@ -27,21 +28,28 @@
 		echo $jsonResultBack;
 	}*/
 
-	function cp_reception_controller_index_load(){
-		$arrResult = cp_db_sql_for_list("t_web_cp_index");
-		$a = json_encode($arrResult);
-
+	function cp_reception_controller_load(){
 		$arrResultBack = array(
 			"code" => "error",
 			"msg" => "数据库获取失败"
 		);
+		$strPararms = file_get_contents("php://input");
+		if($strPararms == ""){
+			$arrResultBack['msg']='后台接收参数为空';
+			echo json_encode($arrResultBack);
+			return;
+		}
+		$strTable = "t_web_cp_".$strPararms; 
+		$arrResult = cp_db_sql_for_list($strTable);
 		if($arrResult == false || count($arrResult) == 0){
 			echo json_encode($arrResultBack);
 			return;
 		}
+		$arrResult = arr_utf8($arrResult);
 		$arrResultBack['code'] = '0000';
 		$arrResultBack['msg'] = 'success';
-		$arrResultBack['data'] = json_encode($arrResult);
-		echo json_encode($arrResultBack);
+		$arrResultBack['data'] = $arrResult;
+		$jsonResult = json_encode($arrResultBack);
+		echo $jsonResult;
 	}
 ?>
