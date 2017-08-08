@@ -113,6 +113,7 @@ function reception_html_change(strHtml,strId = ''){
 		return;
 	}
 	var strSrc = "./web/"+strHtml+".html";
+	console.log(strSrc);
     $.get(strSrc,function(data,status){
     	if(status != "success"){
     		alert("跳转页面失败");
@@ -123,19 +124,17 @@ function reception_html_change(strHtml,strId = ''){
     	}else{
     		clearInterval(timer);
     	}
-	$("#all_contents").html("");
-	$(data).appendTo($("#all_contents"));
-	if(strHtml != 'index'){
-		var func = "reception_"+strHtml+"_show";
-		console.log(func);
-		if(strId == ""){
-			func();
-		}else{
-
-			var a = func +"(\""+strId+"\")";
-			$.a;
-		}  
-	}
+		$("#all_contents").html("");
+		$(data).appendTo($("#all_contents"));
+		if(strHtml != 'index'){
+			if(strId == ""){
+				var func = "reception_"+strHtml+"_show()";
+			}else{
+				var func = "reception_"+strHtml+"_show(\""+strId+"\")";
+			}  
+			var func_load = new Function(func);	
+			func_load();
+		}
 	
     });	
 }
@@ -173,7 +172,7 @@ function reception_banner_prev(){
 }
 
 /***************************instroduce.js内容*/
-/*function reception_instroduce_show(){
+function reception_instroduce_show(){
 	var ajaxUrl = "?mod=reception_controller&mod_func=load";
 	$.ajax({
 		type:"POST",
@@ -186,24 +185,49 @@ function reception_banner_prev(){
 				alert(objData['msg']);
 				return;
 			}
-			var jsonNews = objData['data'];
-			var objNews = jsonNews;
-			var strNews = "news";
-			for(str in objNews){
-				var li = "<li onclick='reception_news_html_change(\""+strNews+"\",\""+objNews[str]["id"]+"\")'><span class='glyphicon glyphicon-volume-up'>"+objNews[str]["cp_news_tittle"]+"</span><li>";
-				$(li).appendTo($(".C4li"));
+			var objInstroduce = objData['data'];
+			var objPicture = objInstroduce['0']['cp_picture'].split(",");
+			$(".instroduce_txt").html(objInstroduce[0]['cp_instroduce_culture']);
+			$(".instroduce_team_text").html(objInstroduce[0]['cp_instroduce_team']);
+			for(str in objPicture){
+				var strSrc = "./img/"+objPicture[str];
+				var li = "<li><img src="+strSrc+" class='img-responsive'></li>";
+				$(li).appendTo($("#instroduce_ul"));
 			}
-			Gnews = objNews;
 		}
 	})
-}*/
+}
 
 /***************************product.js内容*/
+function reception_product_show(){
+	var ajaxUrl = "?mod=reception_controller&mod_func=load";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:"product",
+		dateType:"text",
+		success:function(objData){
+			var objData = JSON.parse(objData);
+			if(objData['code'] == 'error'){
+				alert(objData['msg']);
+				return;
+			}
+			var objProducts = objData['data'];
 
+			console.log(objProducts);
+		}
+	})	
+}
+function reception_product_menu_recur(objProducts,strParent){
+	for(str in objProducts){
+		var li = 
+	}
+}
 
 /***************************news.js内容*/
 //点击新闻跳转到相应的模块并且在有strId的情况下展现某个新闻，没有的话默认第一个
-function reception_news_show(strId = ''){
+function reception_news_show(strId=''){
+	console.log(strId);
 	for(str in Gnews){
 		if(strId != ''){
 			if(strId == Gnews[str]["id"]){
