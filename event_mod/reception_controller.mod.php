@@ -1,5 +1,4 @@
 <?php
-header('content-type:application/json;charset=utf8');
 /*	function cp_reception_controller_container_html(){
 		$arrResultBack = array(
 			"code" => "error",
@@ -45,6 +44,7 @@ header('content-type:application/json;charset=utf8');
 			echo json_encode($arrResultBack);
 			return;
 		}
+		common_debug($arrResult,1);
 		$arrResult = arr_utf8($arrResult);
 		$arrResultBack['code'] = '0000';
 		$arrResultBack['msg'] = 'success';
