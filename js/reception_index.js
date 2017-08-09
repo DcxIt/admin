@@ -2,6 +2,7 @@ $(document).ready(
 	function(){
 		reception_banner_load();
 		reception_news_load();
+		reception_product_load();
 	}
 );
 var Gnews = "";
@@ -34,31 +35,6 @@ function reception_banner_load(){
 			$(".ul2 li").eq(0).css("display","block");
 		}
 	})
-}
-
-function reception_news_load(){
-	var ajaxUrl = "?mod=reception_controller&mod_func=load";
-	$.ajax({
-		type:"POST",
-		url:ajaxUrl,
-		data:"news",
-		dateType:"text",
-		success:function(objData){
-			var objData = JSON.parse(objData);
-			if(objData['code'] == 'error'){
-				alert(objData['msg']);
-				return;
-			}
-			var jsonNews = objData['data'];
-			var objNews = jsonNews;
-			var strNews = "news";
-			for(str in objNews){
-				var li = "<li onclick='reception_html_change(\""+strNews+"\",\""+objNews[str]["id"]+"\")'><span class='glyphicon glyphicon-volume-up'>"+objNews[str]["cp_news_tittle"]+"</span><li>";
-				$(li).appendTo($(".C4li"));
-			}
-			Gnews = objNews;
-		}
-	})	
 }
 
 function reception_banner_change(){
@@ -199,7 +175,7 @@ function reception_instroduce_show(){
 }
 
 /***************************product.js内容*/
-function reception_product_show(){
+function reception_product_load(){
 	var ajaxUrl = "?mod=reception_controller&mod_func=load";
 	$.ajax({
 		type:"POST",
@@ -213,18 +189,42 @@ function reception_product_show(){
 				return;
 			}
 			var objProducts = objData['data'];
-
+			
 			console.log(objProducts);
 		}
 	})	
 }
-function reception_product_menu_recur(objProducts,strParent){
+/*function reception_product_menu_recur(objProducts,strParent){
 	for(str in objProducts){
 		var li = 
 	}
-}
+}*/
 
 /***************************news.js内容*/
+function reception_news_load(){
+	var ajaxUrl = "?mod=reception_controller&mod_func=load";
+	$.ajax({
+		type:"POST",
+		url:ajaxUrl,
+		data:"news",
+		dateType:"text",
+		success:function(objData){
+			var objData = JSON.parse(objData);
+			if(objData['code'] == 'error'){
+				alert(objData['msg']);
+				return;
+			}
+			var jsonNews = objData['data'];
+			var objNews = jsonNews;
+			var strNews = "news";
+			for(str in objNews){
+				var li = "<li onclick='reception_html_change(\""+strNews+"\",\""+objNews[str]["id"]+"\")'><span class='glyphicon glyphicon-volume-up'>"+objNews[str]["cp_news_tittle"]+"</span><li>";
+				$(li).appendTo($(".C4li"));
+			}
+			Gnews = objNews;
+		}
+	})	
+}
 //点击新闻跳转到相应的模块并且在有strId的情况下展现某个新闻，没有的话默认第一个
 function reception_news_show(strId=''){
 	console.log(strId);
