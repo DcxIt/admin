@@ -189,17 +189,51 @@ function reception_product_load(){
 				return;
 			}
 			var objProducts = objData['data'];
-			
-			console.log(objProducts);
+			var strProductBanner = objProducts['0']['menu_list']['0']['product_detail'];
+			var objProductBanner = JSON.parse(strProductBanner);
+			var strProduct = 'product';
+			for(str in objProductBanner){
+				var src = "./img/"+objProductBanner[str]["img_src"];
+				var li = "<li onclick='reception_html_change(\""+strProduct+"\")' style='cursor:pointer'><div class='class_div1'><img src="+src+" class='img-responsive class_img1'></div><h5>"+str+"</h5><div><div class='text_detail1'>"+objProductBanner[str]["product_detail"]+"</div></div></li>"
+				$(li).appendTo($(".product_banner"));
+			}
+			Gproduct = objProducts;
 		}
 	})	
 }
-/*function reception_product_menu_recur(objProducts,strParent){
-	for(str in objProducts){
-		var li = 
+function reception_product_show(strProductName){
+	var objProduct = Gproduct;
+	reception_product_menu(objProduct,$("#product_id"));
+}
+//生成产品的菜单
+function reception_product_menu(objProduct,strParent){
+	for(str in objProduct){
+		if(objProduct[str]['menu_list']){
+			var li =$("<li></li>");
+			var id = str+"a";
+			li = $(li).append("<a id="+id+" onclick='reception_product_menu_hide_func(this)'>"+objProduct[str]["product_name"]+"</a>");
+			li = $(li).append("<ul style='list-style:none;display:none'></ul>");
+			$(li).appendTo(strParent);
+			reception_product_menu(objProduct[str]["menu_list"],$(li).children().eq(1));
+		}else{
+			var li = $("<li></li>");
+			var objProductDetail = JSON.parse(objProduct[str]['product_detail']);
+			console.log(objProductDetail);
+			li = $(li).append("<a onclick='reception_product_detail(\""+objPost+"\")' id="+str+">"+objProduct[str]["product_name"]+"</a>");
+			$(li).appendTo(strParent);
+		}
+		
 	}
-}*/
-
+}
+//显示隐藏
+function reception_product_menu_hide_func(obj){
+	var productId = obj.id;
+	$("#"+productId).parent().children('ul').toggle();	
+}
+// 点击产品目录显示内容
+function reception_product_detail(da){
+	console.log(da);
+}
 /***************************news.js内容*/
 function reception_news_load(){
 	var ajaxUrl = "?mod=reception_controller&mod_func=load";
@@ -227,7 +261,6 @@ function reception_news_load(){
 }
 //点击新闻跳转到相应的模块并且在有strId的情况下展现某个新闻，没有的话默认第一个
 function reception_news_show(strId=''){
-	console.log(strId);
 	for(str in Gnews){
 		if(strId != ''){
 			if(strId == Gnews[str]["id"]){

@@ -242,3 +242,7 @@ background-image: url("../img/b4.jpg");
 .container2-1{
 	overflow: hidden;
 }
+
+.product_banner li{
+	cursor: pointer;
+}
