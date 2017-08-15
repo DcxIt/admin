@@ -217,9 +217,10 @@ function reception_product_menu(objProduct,strParent){
 			reception_product_menu(objProduct[str]["menu_list"],$(li).children().eq(1));
 		}else{
 			var li = $("<li></li>");
-			var objProductDetail = JSON.parse(objProduct[str]['product_detail']);
-			console.log(objProductDetail);
-			li = $(li).append("<a onclick='reception_product_detail(\""+objPost+"\")' id="+str+">"+objProduct[str]["product_name"]+"</a>");
+			/*var jsonProduct = JSON.parse(objProduct[str]);*/
+			console.log(objProduct[str]);
+			var a = '';
+			li = $(li).append("<a onclick='reception_product_detail(\""+objProduct[str]['id']+"\")' id="+str+">"+objProduct[str]["product_name"]+"</a>");
 			$(li).appendTo(strParent);
 		}
 		
@@ -231,8 +232,32 @@ function reception_product_menu_hide_func(obj){
 	$("#"+productId).parent().children('ul').toggle();	
 }
 // 点击产品目录显示内容
-function reception_product_detail(da){
-	console.log(da);
+function reception_product_detail(id){
+	var subMenu = '';
+	for(str in Gproduct){
+		if(Gproduct[str]['menu_list']){
+			for(key in Gproduct[str]['menu_list']){
+				if(Gproduct[str]['menu_list'][key]['id'] == id){
+					subMenu = Gproduct[str]['menu_list'][key];
+				}
+			}
+		}
+	}
+	var arrPic = JSON.parse(subMenu['product_detail']);
+	var strFirstPicSrc = './img/'+subMenu['product_picture'];
+	var strFirstName = subMenu['product_name'];
+	var li = "<img src="+strFirstPicSrc+" style='height:375px;width:700px'>";
+	$(li).appendTo($("#product_big_img"));
+	$('.product_name').html(strFirstName);
+	for(str in arrPic){
+		var srcImg = './img/'+arrPic[str]['img_src'];
+		var li = "<li onclick='reception_product_detail_show(\""+str+"\",\""+arrPic[str]['product_detail']+"\")'><img style='height:75px;width:100px' src="+srcImg+"></li>";
+		$(li).appendTo($(".product_ul1"));
+	}
+}
+//点击图片显示内容
+function reception_product_detail_show(tittle,contents){
+	console.log(tittle,contents);
 }
 /***************************news.js内容*/
 function reception_news_load(){
